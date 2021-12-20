@@ -1,7 +1,7 @@
-import React, { useState} from "react";
+import React from "react";
 import "./BuildArea.css"
 
-export const Home = () => {
+export const BuildArea = () => {
   
     return (
     <>
