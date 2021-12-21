@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
+import { Modal, Navbar, Container } from 'react-bootstrap';
 import './Auth.css';
 import { CheckCircleFill, PersonCircle } from 'react-bootstrap-icons';
 
@@ -91,9 +91,9 @@ return (
           </p>
         </Modal.Body>
       </Modal>
-<div className='app-logo'>
-    <img src={require('../../imgs/app-logo.png')} alt="Build-A-Rig Logo" />
-</div>
+
+<div class="main-container">
+<img src={require('../../imgs/app-logo.png')} alt="Build-A-Rig Logo" />
 <div className={isSignUp ? "right-panel-active" : ""} id="container">
     {/* LogIn/SignIn Form w/ Signup Button to the right */}
 	<div className="form-container sign-in-container">
@@ -140,6 +140,7 @@ return (
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </>
 )
