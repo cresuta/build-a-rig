@@ -219,7 +219,7 @@ input {
 }
 
 .icon-container {
-  margin: 20px 0 15px 0;
+  margin: 20px 0 10px 0;
 }
 
 /* .social-container a {
@@ -272,4 +272,8 @@ input[class="form-input"]:focus {
 
   .form-btn:hover {
 	animation: bounce 1s;
+  }
+
+  .form-lead {
+	  font-weight: 300;
   }
