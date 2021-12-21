@@ -211,7 +211,7 @@ input {
 }
 
 .icon-container {
-	margin: 20px 0;
+	margin: 20px 0 15px 0;
 }
 
 /* .social-container a {
@@ -224,3 +224,11 @@ input {
 	height: 40px;
 	width: 40px;
 } */
+
+.form-input {
+	border-radius: 5px;
+}
+
+.app-logo img{
+	background-color: 'transparent';
+}

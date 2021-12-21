@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import './Auth.css';
-import { Envelope, Lock, Person, PersonCircle } from 'react-bootstrap-icons';
+import { CheckCircleFill, PersonCircle } from 'react-bootstrap-icons';
 
 export const LoginRegister = (props) => {
 
@@ -18,7 +18,7 @@ export const LoginRegister = (props) => {
   const navigate = useNavigate();
 
   const existingLoginUserCheck = () => {
-    return fetch(`http://localhost:8088/users?email=${email}&password=${password}`)
+    return fetch(`http://localhost:8088/users?email=${email}`)
     .then(res => res.json())
     .then(user => user.length ? user[0] : false);
   }
@@ -87,11 +87,13 @@ return (
         </Modal.Header>
         <Modal.Body>
           <p>
-            User doesn't exist
+            User doesn't exist or check for spelling 
           </p>
         </Modal.Body>
       </Modal>
-
+<div className='app-logo'>
+    <img src={require('../../imgs/app-logo.png')} alt="Build-A-Rig Logo" />
+</div>
 <div className={isSignUp ? "right-panel-active" : ""} id="container">
     {/* LogIn/SignIn Form w/ Signup Button to the right */}
 	<div className="form-container sign-in-container">
@@ -100,23 +102,22 @@ return (
             <div className="icon-container">
                 <PersonCircle color="red" size={36} />
 			</div>
-            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
-            <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
+            <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
+            <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
 			<button onClick={handleLogin} type="submit">Sign In</button>
 		</form>
 	</div>
     {/* Sign Up form w/ Login Button to the left */}
 	<div className="form-container sign-up-container">
 		<form action="#">
-			<h1>Create Account</h1>
-			{/* <div className="icon-container">
-			
-			</div> */}
-			<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="First Name" required />
-			<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
-			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
-			<input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required />
-			<input onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="Zip Code" minLength="5" required />
+            <h1>Sign up</h1>
+            <div className="icon-container">
+                <CheckCircleFill color="red" size={36} />
+			</div>
+			<input className="form-input" onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="First Name" required />
+			<input className="form-input" onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
+			<input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
+			<input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" minLength={8} required />
 			<button onClick={handleRegister} type="submit">Sign Up</button>
 		</form>
 	</div>
@@ -125,14 +126,14 @@ return (
 		<div className="overlay">
 			<div className="overlay-panel overlay-left">
 				<h1>Already Have An Account?</h1>
-				<p>To enter your mining rig build area, please login with your personal info</p>
+				<p>Please login with your personal info to get back to building your rig</p>
 				<Link to='/login' >
                     <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn">Sign In</button>
                 </Link>
             </div>
 			<div className="overlay-panel overlay-right">
 				<h1>First Time?</h1>
-				<p>Enter your personal details and start your journey into crypto mining</p>
+				<p>Let's start your journey into building your first crypto mining rig</p>
                 <Link to='/register' >
                     <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp">Sign Up</button> 
                 </Link>
