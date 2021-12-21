@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Auth.css';
+import { Envelope, Lock, Person, PersonCircle } from 'react-bootstrap-icons';
 
 export const LoginRegister = (props) => {
 
@@ -10,6 +10,7 @@ export const LoginRegister = (props) => {
   const [first_name, setFirstName] = useState({});
   const [last_name, setLastName] = useState({});
   const [zipCode, setZipCode] = useState({});
+  const [password, setPassword] = useState("");
 
   const [isSignUp, setSignUp] = useState(false)
 
@@ -17,7 +18,7 @@ export const LoginRegister = (props) => {
   const navigate = useNavigate();
 
   const existingLoginUserCheck = () => {
-    return fetch(`http://localhost:8088/users?email=${email}`)
+    return fetch(`http://localhost:8088/users?email=${email}&password=${password}`)
     .then(res => res.json())
     .then(user => user.length ? user[0] : false);
   }
@@ -55,6 +56,7 @@ export const LoginRegister = (props) => {
               { first_name,
                 last_name,
                 email,
+                password,
                 zipCode
               }
             )
@@ -95,12 +97,11 @@ return (
 	<div className="form-container sign-in-container">
 		<form action="#">
 			<h1>Sign in</h1>
-			<div className="social-container">
-				{/* <i className="fab fa-facebook-f"></i>
-				<i className="fab fa-google-plus-g"></i>
-				<i className="fab fa-linkedin-in"></i> */}
+            <div className="icon-container">
+                <PersonCircle color="red" size={36} />
 			</div>
-			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
+            <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
 			<button onClick={handleLogin} type="submit">Sign In</button>
 		</form>
 	</div>
@@ -108,16 +109,14 @@ return (
 	<div className="form-container sign-up-container">
 		<form action="#">
 			<h1>Create Account</h1>
-			<div className="social-container">
-				{/* <a href="#" class="social"><i className="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i className="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i className="fab fa-linkedin-in"></i></a> */}
-			</div>
-			<span>or use your email for registration</span>
-			<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="first name" required />
-			<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="last name" required />
-			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" required />
-			<input onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="zip code" minLength="5" required />
+			{/* <div className="icon-container">
+			
+			</div> */}
+			<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="First Name" required />
+			<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
+			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
+			<input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required />
+			<input onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="Zip Code" minLength="5" required />
 			<button onClick={handleRegister} type="submit">Sign Up</button>
 		</form>
 	</div>
