@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './Auth.css';
 
@@ -40,8 +41,6 @@ export const LoginRegister = (props) => {
     .then(res => res.json())
     .then(user => !!user.length)
   }
-
-
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -115,13 +114,11 @@ return (
 		<form action="#">
 			<h1>Sign in</h1>
 			<div className="social-container">
-				{/* <a href="#" class="social"><i className="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i className="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i className="fab fa-linkedin-in"></i></a> */}
+				{/* <i className="fab fa-facebook-f"></i>
+				<i className="fab fa-google-plus-g"></i>
+				<i className="fab fa-linkedin-in"></i> */}
 			</div>
-			<span>or use your account</span>
 			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
 			<button onClick={handleLogin} type="submit">Sign In</button>
 		</form>
 	</div>
