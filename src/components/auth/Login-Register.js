@@ -104,7 +104,7 @@ return (
 			</div>
             <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
             <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
-			<button onClick={handleLogin} type="submit">Sign In</button>
+			<button onClick={handleLogin} type="submit" className="form-btn">Sign In</button>
 		</form>
 	</div>
     {/* Sign Up form w/ Login Button to the left */}
@@ -118,7 +118,7 @@ return (
 			<input className="form-input" onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
 			<input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
 			<input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" minLength={8} required />
-			<button onClick={handleRegister} type="submit">Sign Up</button>
+            <button onClick={handleRegister} type="submit" className="form-btn">Sign Up</button>
 		</form>
 	</div>
     {/* Login Form w/ Signup Button to the right */}
@@ -132,7 +132,7 @@ return (
                 </Link>
             </div>
 			<div className="overlay-panel overlay-right">
-				<h1>First Time?</h1>
+				<h1>Hello, Miner!</h1>
 				<p>Let's start your journey into building your first crypto mining rig</p>
                 <Link to='/register' >
                     <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp">Sign Up</button> 

@@ -69,6 +69,12 @@ button.ghost {
   border-color: #ffffff;
 }
 
+button.ghost:hover {
+	background-color: white;
+	border-color: #ffffff;
+	color: #ff4b2b;
+}
+
 form {
   background-color: #ffffff;
   display: flex;
@@ -242,3 +248,7 @@ input {
 	position: fixed;
 	bottom: 31em;
 }
+
+input[class="form-input"]:focus {
+	outline-color: #ff4b2bF0;
+  } 
