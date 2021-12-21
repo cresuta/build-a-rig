@@ -5,7 +5,7 @@ import './Auth.css';
 
 export const Login = (props) => {
 
-  const [email, set] = useState("");
+  const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const Login = (props) => {
   const handleLogin = e => {
     e.preventDefault();
     existingUserCheck()
-    .then( userExists => {
+    .then(userExists => {
       if (userExists) {
         localStorage.setItem('react_nutshell_user', userExists.id);
         navigate('/');
@@ -55,9 +55,7 @@ export const Login = (props) => {
       <Form>
         <Form.Group>
           <Form.Label>Email</Form.Label>
-          <Form.Control onChange={(e) => set(e.target.value)} type="email"  placeholder="enter email" />
-          <Form.Label>Password</Form.Label>
-          <Form.Control onChange={(e) => set(e.target.value)} type="password"  placeholder="password"  minlength="8" required />
+          <Form.Control onChange={(e) => setEmail(e.target.value)} type="email"  placeholder="enter email" />
           <Form.Text  className="text-muted">
             Don't have an account? <Link to='/register' >Register</Link>
           </Form.Text>

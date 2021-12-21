@@ -6,11 +6,9 @@ import "./Auth.css";
 export const Register = () => {
 
   const [email, setEmail] = useState({});
-  const [firstName, setFirstName] = useState({});
-  const [lastName, setLastName] = useState({});
-  const [password, setPassword] = useState({});
+  const [first_name, setFirstName] = useState({});
+  const [last_name, setLastName] = useState({});
   const [zipCode, setZipCode] = useState({});
-  const [electricty, setElectricity] = useState({});
   
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -31,7 +29,13 @@ export const Register = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify(
+              { first_name,
+                last_name,
+                email,
+                zipCode
+              }
+            )
         })
         .then(res => res.json())
         .then(createdUser => {
@@ -75,10 +79,8 @@ export const Register = () => {
           <Form.Control onChange={(e) => setLastName(e.target.value)} type="text" placeholder="last name" required />
           <Form.Label>Email address</Form.Label>
           <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" required />
-          <Form.Label>Password (8 characters minimum)</Form.Label>
-          <Form.Control onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" minlength="8" required />
           <Form.Label>Zip Code</Form.Label>
-          <Form.Control onChange={(e) => setZipCode(e.target.value)} type="text" placeholder="zip code" minlength="5" required />
+          <Form.Control onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="zip code" minlength="5" required />
           <Form.Text className="text-muted">
             You can trust us!
           </Form.Text>
