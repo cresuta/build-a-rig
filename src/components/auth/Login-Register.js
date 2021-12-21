@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
 import './Auth.css';
 
 export const LoginRegister = (props) => {
@@ -12,7 +11,7 @@ export const LoginRegister = (props) => {
   const [last_name, setLastName] = useState({});
   const [zipCode, setZipCode] = useState({});
 
-  const [isSignUp, setSignUp] = useState(true)
+  const [isSignUp, setSignUp] = useState(false)
 
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -91,24 +90,7 @@ return (
         </Modal.Body>
       </Modal>
 
-<div className= {isSignUp ? "right-panel-active" : ""} id="container">
-    {/* Sign Up form w/ Login Button to the left */}
-	<div className="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<div className="social-container">
-				{/* <a href="#" class="social"><i className="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i className="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i className="fab fa-linkedin-in"></i></a> */}
-			</div>
-			<span>or use your email for registration</span>
-			<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="first name" required />
-			<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="last name" required />
-			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" required />
-			<input onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="zip code" minlength="5" required />
-			<button onClick={handleRegister} type="submit">Sign Up</button>
-		</form>
-	</div>
+<div className={isSignUp ? "right-panel-active" : ""} id="container">
     {/* Login Form w/ Signup Button to the right */}
 	<div className="form-container sign-in-container">
 		<form action="#">
@@ -122,14 +104,33 @@ return (
 			<button onClick={handleLogin} type="submit">Sign In</button>
 		</form>
 	</div>
+    {/* Sign Up form w/ Login Button to the left */}
+	<div className="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<div className="social-container">
+				{/* <a href="#" class="social"><i className="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i className="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i className="fab fa-linkedin-in"></i></a> */}
+			</div>
+			<span>or use your email for registration</span>
+			<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="first name" required />
+			<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="last name" required />
+			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" required />
+			<input onChange={(e) => setZipCode(parseInt(e.target.value))} type="text" placeholder="zip code" minLength="5" required />
+			<button onClick={handleRegister} type="submit">Sign Up</button>
+		</form>
+	</div>
     {/* Login Form w/ Signup Button to the right */}
 	<div className="overlay-container">
 		<div className="overlay">
 			<div className="overlay-panel overlay-left">
 				<h1>Already Have An Account?</h1>
 				<p>To enter your mining rig build area, please login with your personal info</p>
-				<button onClick={() => {setSignUp(false)}} className="ghost" id="signIn">Sign In</button>
-			</div>
+				<Link to='/login' >
+                    <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn">Sign In</button>
+                </Link>
+            </div>
 			<div className="overlay-panel overlay-right">
 				<h1>First Time?</h1>
 				<p>Enter your personal details and start your journey into crypto mining</p>

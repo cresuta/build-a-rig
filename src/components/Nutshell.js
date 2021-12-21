@@ -9,7 +9,8 @@ class Nutshell extends Component {
     return (
       <Routes>
         <Route path="/*" element={<Auth />} />
-        <Route path="/login-register" element={<LoginRegister />} />
+        <Route path="/login" element={<LoginRegister />} />
+        <Route path="/register" element={<LoginRegister />} />
       </Routes>
     );
   }
@@ -25,7 +26,7 @@ const Auth = () => {
       </>
     );
   } else {
-    return <Navigate to="/login-register" />;
+    return <Navigate to="/login" />;
   }
 }
 
