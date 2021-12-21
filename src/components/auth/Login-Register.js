@@ -91,7 +91,7 @@ return (
       </Modal>
 
 <div className={isSignUp ? "right-panel-active" : ""} id="container">
-    {/* Login Form w/ Signup Button to the right */}
+    {/* LogIn/SignIn Form w/ Signup Button to the right */}
 	<div className="form-container sign-in-container">
 		<form action="#">
 			<h1>Sign in</h1>
@@ -100,7 +100,7 @@ return (
 				<i className="fab fa-google-plus-g"></i>
 				<i className="fab fa-linkedin-in"></i> */}
 			</div>
-			<input type="email" placeholder="Email" />
+			<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
 			<button onClick={handleLogin} type="submit">Sign In</button>
 		</form>
 	</div>
