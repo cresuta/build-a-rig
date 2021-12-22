@@ -55,8 +55,7 @@ export const LoginRegister = (props) => {
               { first_name,
                 last_name,
                 email,
-                password,
-                zipCode
+                password
               }
             )
         })

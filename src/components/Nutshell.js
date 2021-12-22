@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import NavBar from "./nav/NavBar";
+import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { LoginRegister } from "./auth/Login-Register"
@@ -21,7 +21,7 @@ const Auth = () => {
     
     return(
       <>
-        {/* <NavBar /> */}
+        <NavBar />
         <ApplicationViews />
       </>
     );
