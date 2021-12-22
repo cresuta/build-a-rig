@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Modal, Navbar, Container } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import './Auth.css';
 import { CheckCircleFill, PersonCircle } from 'react-bootstrap-icons';
 
@@ -9,7 +9,6 @@ export const LoginRegister = (props) => {
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState({});
   const [last_name, setLastName] = useState({});
-  const [zipCode, setZipCode] = useState({});
   const [password, setPassword] = useState("");
 
   const [isSignUp, setSignUp] = useState(false)
