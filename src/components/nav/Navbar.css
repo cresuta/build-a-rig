@@ -2,13 +2,6 @@
     max-height: 100px;
 }
 
-/* .nav-item {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: 100px;
-} */
-
 .col-3 {
     display: flex;
     align-items: center;

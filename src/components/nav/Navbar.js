@@ -1,13 +1,10 @@
 import React, { Component } from "react"
-import { Navbar, Container, Nav, Col, Dropdown} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Navbar, Container, Col, Dropdown} from "react-bootstrap"
 import { PersonCircle } from 'react-bootstrap-icons';
 import "./NavBar.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
 class NavBar extends Component {
-    
     render() {
         return (
             <Navbar fixed="top" bg="dark" variant="dark" className="navbar">
@@ -39,24 +36,6 @@ class NavBar extends Component {
                     </Col>
                 </Container>    
             </Navbar>
-
-            
-            
-            // <nav className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
-            //     <ul className="nav nav-pills nav-fill">
-            //         <li className="nav-item">
-            //             <Link className="nav-link" to="/rigbuilds">Rig Builds</Link>
-            //         </li>
-            //     </ul>
-            //     <span className="navbar-text">
-            //         <ul className="nav nav-pills nav-fill">
-            //             <li className="nav-item">
-            //                 <Link className="nav-link" to="/login">Sign Out</Link>
-            //             </li>
-            //         </ul>
-            //     </span>
-            // </nav>
-    
         )
     }
 }
