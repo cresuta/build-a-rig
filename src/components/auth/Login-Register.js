@@ -102,7 +102,7 @@ return (
 			</div>
             <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
             <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
-			<button onClick={handleLogin} type="submit" className="form-btn">Sign In</button>
+			<button onClick={handleLogin} type="submit" className="form-btn form-btn-signin">Sign In</button>
 		</form>
 	</div>
     {/* Sign Up form w/ Login Button to the left */}
@@ -116,7 +116,7 @@ return (
 			<input className="form-input" onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
 			<input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
 			<input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" minLength={8} required />
-            <button onClick={handleRegister} type="submit" className="form-btn">Sign Up</button>
+            <button onClick={handleRegister} type="submit" className="form-btn form-btn-signup">Sign Up</button>
 		</form>
 	</div>
     {/* Login Form w/ Signup Button to the right */}
