@@ -83,7 +83,7 @@ button.ghost {
 button.ghost:hover {
 	background-color: white;
 	border-color: #ffffff;
-	color: #ff4b2b;
+	color: #80D0C7;
 }
 
 form {
@@ -262,7 +262,11 @@ input {
 }
 
 input[class="form-input"]:focus {
-	outline-color: #ff4b2bF0;
+	outline-color: #80D0C7;
+} 
+
+.sign-up-container input[class="form-input"]:focus {
+	outline-color: #0093E9;
 } 
 
 @keyframes bounce {
