@@ -98,11 +98,11 @@ return (
 		<form action="#">
 			<h1>Sign in</h1>
             <div className="icon-container">
-                <PersonCircle color="red" size={36} />
+                <PersonCircle id="person-circle-icon" size={36} />
 			</div>
             <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
             <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
-			<button onClick={handleLogin} type="submit" className="form-btn">Sign In</button>
+			<button onClick={handleLogin} type="submit" className="form-btn form-btn-signin">Sign In</button>
 		</form>
 	</div>
     {/* Sign Up form w/ Login Button to the left */}
@@ -110,13 +110,13 @@ return (
 		<form action="#">
             <h1>Sign up</h1>
             <div className="icon-container">
-                <CheckCircleFill color="red" size={36} />
+                <CheckCircleFill id="check-circle-fill-icon" size={36} />
 			</div>
 			<input className="form-input" onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="First Name" required />
 			<input className="form-input" onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
 			<input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required />
 			<input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" minLength={8} required />
-            <button onClick={handleRegister} type="submit" className="form-btn">Sign Up</button>
+            <button onClick={handleRegister} type="submit" className="form-btn form-btn-signup">Sign Up</button>
 		</form>
 	</div>
     {/* Login Form w/ Signup Button to the right */}
@@ -126,14 +126,14 @@ return (
 				<h1>Already Have An Account?</h1>
 				<p className="form-lead">Please login with your personal info to get back to building your rig</p>
 				<Link to='/login' >
-                    <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn">Sign In</button>
+                    <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn"><span>Sign In</span></button>
                 </Link>
             </div>
 			<div className="overlay-panel overlay-right">
 				<h1>Hello, Miner!</h1>
 				<p className="form-lead">Let's start your journey into building your first crypto mining rig</p>
                 <Link to='/register' >
-                    <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp">Sign Up</button> 
+                    <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp"><span>Sign Up</span></button> 
                 </Link>
 			</div>
 		</div>
