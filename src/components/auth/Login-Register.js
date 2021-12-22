@@ -126,14 +126,14 @@ return (
 				<h1>Already Have An Account?</h1>
 				<p className="form-lead">Please login with your personal info to get back to building your rig</p>
 				<Link to='/login' >
-                    <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn">Sign In</button>
+                    <button onClick={() => {setSignUp(false)}} className="ghost" id="signIn"><span>Sign In</span></button>
                 </Link>
             </div>
 			<div className="overlay-panel overlay-right">
 				<h1>Hello, Miner!</h1>
 				<p className="form-lead">Let's start your journey into building your first crypto mining rig</p>
                 <Link to='/register' >
-                    <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp">Sign Up</button> 
+                    <button onClick={() => {setSignUp(true)}} className="ghost" id="signUp"><span>Sign Up</span></button> 
                 </Link>
 			</div>
 		</div>

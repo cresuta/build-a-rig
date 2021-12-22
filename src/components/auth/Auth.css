@@ -78,6 +78,9 @@ button:focus {
 #signUp {
   background-color: transparent;
   border: 1px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 #signUp:hover {
@@ -86,16 +89,71 @@ button:focus {
 	color: #80D0C7;
 }
 
+#signUp span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#signUp span:after {
+  content: '\003E\003E';
+  position: absolute;
+  opacity: 0;
+  top: 1px;
+  right: -20px;
+  transition: 0.5s;
+  font-size: 10px;
+}
+
+#signUp:hover span {
+  padding-right: 25px;
+}
+
+#signUp:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 /* "Already Have An Account?" sign in btn */
 #signIn {
   background-color: transparent;
   border: 1px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 #signIn:hover {
 	background-color: white;
 	border-color: #ffffff;
 	color: #0093E9;
+}
+
+#signIn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#signIn span:before {
+  content: '\003C\003C';
+  position: absolute;
+  opacity: 0;
+  top: 1px;
+  left: -20px;
+  transition: 0.5s;
+  font-size: 10px;
+}
+
+#signIn:hover span {
+  padding-left: 25px;
+}
+
+#signIn:hover span:before {
+  opacity: 1;
+  left: 0;
 }
 
 form {
