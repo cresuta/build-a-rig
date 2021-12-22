@@ -5,7 +5,9 @@
 }
 
 body {
-  background: #f6f5f7;
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,8 +47,9 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  border: 1px solid #0093E9;
+  background-color: #0093E9;
+  background-image: linear-gradient(135deg, #0093E9 32%, #80D0C7 58%);
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -54,6 +57,14 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+}
+
+#person-circle-icon {
+  color: #80D0C7;
+}
+
+#check-circle-fill-icon {
+  color: #0093E9;
 }
 
 button:active {
@@ -167,9 +178,8 @@ input {
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-color: #0093E9;
+  background-image: linear-gradient(90deg, #0093E9 42%, #80D0C7 59%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -203,6 +213,7 @@ input {
 
 .overlay-left {
   transform: translateX(-20%);
+  background-color: #0093E9;
 }
 
 #container.right-panel-active .overlay-left {
@@ -212,6 +223,7 @@ input {
 .overlay-right {
   right: 0;
   transform: translateX(0);
+  background-color: #80D0C7;
 }
 
 #container.right-panel-active .overlay-right {

@@ -98,7 +98,7 @@ return (
 		<form action="#">
 			<h1>Sign in</h1>
             <div className="icon-container">
-                <PersonCircle color="red" size={36} />
+                <PersonCircle id="person-circle-icon" size={36} />
 			</div>
             <input className="form-input" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required/>
             <input className="form-input" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" required/>
@@ -110,7 +110,7 @@ return (
 		<form action="#">
             <h1>Sign up</h1>
             <div className="icon-container">
-                <CheckCircleFill color="red" size={36} />
+                <CheckCircleFill id="check-circle-fill-icon" size={36} />
 			</div>
 			<input className="form-input" onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="First Name" required />
 			<input className="form-input" onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Last Name" required />
