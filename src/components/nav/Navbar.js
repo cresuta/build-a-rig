@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Navbar, Container, Col, Dropdown} from "react-bootstrap"
 import { PersonCircle } from 'react-bootstrap-icons';
-import "./NavBar.css"
+import "./Navbar.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 class NavBar extends Component {
