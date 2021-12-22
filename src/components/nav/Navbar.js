@@ -1,38 +1,46 @@
 import React, { Component } from "react"
+import { Navbar, Container, Nav, Col, Dropdown} from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { Navbar, Container, Nav } from "react-bootstrap"
-import { CheckCircleFill, Person, PersonCircle } from 'react-bootstrap-icons';
+import { PersonCircle } from 'react-bootstrap-icons';
 import "./NavBar.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
 class NavBar extends Component {
+    
     render() {
         return (
-            <Navbar fixed="top" bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand>
-                        <img
-                            src={require('../../imgs/app-logo.png')}
-                            width="300"
-                            height="300"
-                            className="d-inline-block align-top"
-                            alt="Build-A-Rig Logo"
-                        />
-                    </Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link to="/rigbuilds">Previous Rig Builds</Nav.Link>
-                    </Nav>
-                </Container>
-                <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Hello, Cameron!</Nav.Link> 
-                    </Nav>
-                    <Navbar.Brand>
-                        <PersonCircle color="white" size={36} />
-                    </Navbar.Brand>
-                </Container>
+            <Navbar fixed="top" bg="dark" variant="dark" className="navbar">
+                <Container className="container">
+                    <Col className="col-1">
+                        <Navbar.Brand>
+                            <img
+                                src={require('../../imgs/app-logo.png')}
+                                width="400"
+                                height="400"
+                                className="d-inline-block align-top"
+                                alt="Build-A-Rig Logo"
+                            />
+                        </Navbar.Brand>
+                    </Col>
+                    <Col className="col-3">
+                        <Dropdown>
+                            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+                                <Navbar.Brand>
+                                    <PersonCircle className="person-icon" size={36} />
+                                </Navbar.Brand>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu variant="dark">
+                                <Dropdown.Item href="#/action-1">Previous Rig Builds</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href="/login">Sign Out</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
+                </Container>    
             </Navbar>
+
+            
             
             // <nav className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
             //     <ul className="nav nav-pills nav-fill">
