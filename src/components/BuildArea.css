@@ -14,8 +14,7 @@
 }
 
 .graphics-cards__container {
-  background: rgb(128,208,199);
-  background: linear-gradient(180deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
+  background-color: #80D0C7;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -37,10 +36,11 @@
 }
 
 .build-area {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background: rgb(128,208,199);
+  background: linear-gradient(315deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
+  display: flex; 
   justify-content: center;
   align-items: center;
 }
@@ -58,7 +58,29 @@
   text-align: center;
 }
 
-.save-build {
+/* Save Build btn */
+#save-build {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#save-build:hover {
+	background-color: white;
+	border-color: #ffffff;
+	color: #80D0C7;
+}
+
+#save-build span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#save-build {
   margin-top: 3em;
 }
 
@@ -80,5 +102,10 @@
 .revenue, .electricity, .profit {
   background-color: #0093E9;
   border-radius: 5px;
+}
+
+p, .revenue, .electricity, .profit {
+  text-align: left;
+  padding-left: 20px;
 }
 

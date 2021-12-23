@@ -1,5 +1,7 @@
 import React from "react";
 import "./BuildArea.css";
+import { Link } from "react-router-dom";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export const BuildArea = () => {
   
@@ -13,13 +15,9 @@ export const BuildArea = () => {
         </div>
         
         <div className="build__container">
-          
           <div className="build-area__container">
             <div className="build-area">
-              <h1>Build Area</h1>
-              <div>
-                <button>Build!</button>
-              </div>
+            <h1>Build Area</h1>
             </div>
             <div className="build-area-totals ">
               {/* <h1>Build Area Totals</h1> */}
@@ -30,20 +28,28 @@ export const BuildArea = () => {
                 <h2>Power Consumption</h2>
               </div>
               <div className="save-build">
-                <button>Save Build</button>
+                <Link to='/#' >
+                    <button className="ghost" id="save-build"><span>Save Build <i class="bi bi-cloud-download"></i></span></button> 
+                </Link>
               </div>
             </div>
           </div>
 
           <div className="calculation-metrics__container">
             <div className="revenue">
-              <h1>Revenue</h1>
+              <p>Totals for Day, Month, Year</p>
+              <h1><i class="bi bi-currency-dollar"></i>Revenue</h1>
+              <div className="revenue-metrics"></div>
             </div>
             <div className="electricity">
-              <h1>Electricity</h1>
+              <p>Totals for Day, Month, Year</p>
+              <h1><i class="bi bi-lightning-charge"></i>Electricity</h1>
+              <div className="electricity-metrics"></div>
             </div>
             <div className="profit">
-              <h1>Profit</h1>
+              <p>Totals for Day, Month, Year</p>
+              <h1><i class="bi bi-cash-coin"></i>Profit</h1>
+              <div className="profit-metrics"></div>
             </div>
           </div>
 
