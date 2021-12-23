@@ -90,7 +90,7 @@ return (
         </Modal.Body>
       </Modal>
 
-<div class="main-container">
+<div className="main-container">
 <img src={require('../../imgs/app-logo.png')} alt="Build-A-Rig Logo" />
 <div className={isSignUp ? "right-panel-active" : ""} id="container">
     {/* LogIn/SignIn Form w/ Signup Button to the right */}
