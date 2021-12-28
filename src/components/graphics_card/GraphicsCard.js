@@ -4,14 +4,14 @@ import {Badge, Button} from 'react-bootstrap'
 export const GraphicsCard = ({gpu}) => {
     if (gpu.brand === "Nvidia") {
         return (
-        <Button variant="light" className="card">
-        {gpu.name}<Badge bg="success">{gpu.brand}</Badge>
+        <Button variant="light" className="card-name">
+        {gpu.name}<Badge className="card-brand" bg="success">{gpu.brand}</Badge>
         </Button> 
         )
     } else {
         return (
-        <Button variant="light" className="card">
-        {gpu.name}<Badge bg="danger">{gpu.brand}</Badge>
+        <Button variant="light" className="card-name">
+        {gpu.name}<Badge className="card-brand" bg="danger">{gpu.brand}</Badge>
         </Button>  
         )
     }
