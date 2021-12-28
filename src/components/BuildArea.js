@@ -2,9 +2,10 @@ import React from "react";
 import "./BuildArea.css";
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import  {GraphicsCardList} from "./graphics_card/GraphicsCardList";
 
 export const BuildArea = () => {
-  
+
     return (
     <>
 
@@ -12,6 +13,9 @@ export const BuildArea = () => {
         
         <div className="graphics-cards__container">
           <h1>Graphics Cards</h1>
+          <div className="graphics-cards__list">
+            <GraphicsCardList/>
+          </div>
         </div>
         
         <div className="build__container">

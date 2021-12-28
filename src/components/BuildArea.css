@@ -8,7 +8,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 25% 75%;
   column-gap: 20px;
   margin-top: 230px;
 }
@@ -17,9 +17,19 @@
   background-color: #80D0C7;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-left: 25px;
   margin-bottom: 150px;
+}
+
+.graphics-cards__list {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-rows: repeat(14, 1fr);
+  margin: 1em auto;
 }
 
 .build__container {
@@ -36,7 +46,6 @@
 }
 
 .build-area {
-  /* background-color: #ffffff; */
   background: rgb(128,208,199);
   background: linear-gradient(315deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
   border-radius: 5px;

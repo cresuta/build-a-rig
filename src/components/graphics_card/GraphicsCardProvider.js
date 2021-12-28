@@ -4,7 +4,7 @@ export const GraphicsCardContext = createContext();
 
 export const GraphicsCardProvider = (props) => {
 
-    const [graphicscards, setGraphicsCards] = useState([])
+    const [graphicsCards, setGraphicsCards] = useState([])
 
     const getGraphicsCards = () => {
         return fetch("http://localhost:8088/graphicsCards")
@@ -19,7 +19,7 @@ export const GraphicsCardProvider = (props) => {
 
     return (
         <GraphicsCardContext.Provider value={{
-            graphicscards, getGraphicsCards, getGraphicsCardById
+            graphicsCards, getGraphicsCards, getGraphicsCardById
         }}>
             {props.children}
         </GraphicsCardContext.Provider>
