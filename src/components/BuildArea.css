@@ -4,7 +4,98 @@
   box-sizing: border-box;
 }
 
-.home__container {
-  /* height: 100vh;
-  width: 100vw; */
+.dashboard__container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  column-gap: 20px;
+  margin-top: 230px;
 }
+
+.build__container {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  row-gap: 20px;
+}
+
+.build-area__container {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  column-gap: 20px;
+  margin-right: 65px;
+}
+
+.build-area {
+  background: rgb(128,208,199);
+  background: linear-gradient(315deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
+  border-radius: 5px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.build-area-totals {
+  background-color: #80D0C7;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.build-area-totals__list {
+  margin: 2em auto;
+  text-align: center;
+}
+
+/* Save Build btn */
+#save-build {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#save-build:hover {
+	background-color: white;
+	border-color: #ffffff;
+	color: #80D0C7;
+}
+
+#save-build span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#save-build {
+  margin-top: 3em;
+}
+
+.ethereum-logo {
+  width: 200px;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.calculation-metrics__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  text-align: center;
+  margin-right: 45px;
+  margin-bottom: 169px;
+}
+
+.revenue, .electricity, .profit {
+  background-color: #0093E9;
+  border-radius: 5px;
+}
+
+p, .revenue, .electricity, .profit {
+  text-align: left;
+  padding-left: 20px;
+}
+
