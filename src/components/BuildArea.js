@@ -3,6 +3,7 @@ import "./BuildArea.css";
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import  {GraphicsCardList} from "./graphics_card/GraphicsCardList";
+// import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 
 export const BuildArea = () => {
 
@@ -12,7 +13,7 @@ export const BuildArea = () => {
       <main className="px-2 py-2 dashboard__container">
         
         <div className="graphics-cards__container">
-          <h1>Graphics Cards</h1>
+          {/* <h1>Graphics Cards</h1> */}
           <div className="graphics-cards__list">
             <GraphicsCardList/>
           </div>
@@ -22,6 +23,7 @@ export const BuildArea = () => {
           <div className="build-area__container">
             <div className="build-area">
             <h1>Build Area</h1>
+            {/* <MotherboardDropdown /> */}
             </div>
             <div className="build-area-totals ">
               {/* <h1>Build Area Totals</h1> */}

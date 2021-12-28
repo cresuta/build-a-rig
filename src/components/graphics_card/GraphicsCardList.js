@@ -7,8 +7,7 @@ import "./GraphicsCard.css"
 export const GraphicsCardList = () => {
 
     const {graphicsCards, getGraphicsCards} = useContext(GraphicsCardContext);
-    // const navigate = useNavigate();
-
+    
     useEffect(() => {
         getGraphicsCards()
     }, [])
@@ -16,9 +15,9 @@ export const GraphicsCardList = () => {
     return (
         <>
         {
-        graphicsCards.map(gpu => {
-            return <GraphicsCard key={gpu.id} gpu={gpu} />
-        })
+            graphicsCards.map(gpu => {
+                return <GraphicsCard key={gpu.id} gpu={gpu} />
+            })
         }   
         </>
     )

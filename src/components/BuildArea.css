@@ -13,25 +13,6 @@
   margin-top: 230px;
 }
 
-.graphics-cards__container {
-  background-color: #80D0C7;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 25px;
-  margin-bottom: 150px;
-}
-
-.graphics-cards__list {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  column-gap: 10px;
-  row-gap: 10px;
-  grid-template-rows: repeat(14, 1fr);
-  margin: 1em auto;
-}
-
 .build__container {
   display: grid;
   grid-template-rows: 50% 50%;
