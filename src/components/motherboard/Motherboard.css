@@ -1,0 +1,20 @@
+.motherboard__list {
+    
+}
+ 
+.card-btn {
+      width: 125px;
+      height: 45px;
+      border-radius: 5px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      padding: 6px 4px;
+      cursor: pointer;
+}
+  
+.card-brand {
+      align-self: flex-end;
+      margin-top: 0.4em;
+      font-size: 8px;
+}

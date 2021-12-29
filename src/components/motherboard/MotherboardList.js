@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from "react"
-import { MotherboardContext } from "./MotherboardProvider"
+import { MotherboardContext } from "./MotherboardProvider";
 import { MotherboardCard } from "./MotherboardCard";
+import "./Motherboard.css";
 
 export const MotherboardList = () => {
     
@@ -11,12 +12,12 @@ export const MotherboardList = () => {
     }, [])
 
     return (
-        <>
+        <> 
         {
             motherboards.map(mobo => {
                 return <MotherboardCard key={mobo.id} mobo={mobo} />
             })
-        }
+        }  
         </>
     )
 }

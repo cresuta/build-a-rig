@@ -2,14 +2,16 @@ import React from "react";
 import "./BuildArea.css";
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import  {GraphicsCardList} from "./graphics_card/GraphicsCardList";
-// import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
+import {GraphicsCardList} from "./graphics_card/GraphicsCardList";
+// import {MotherboardList} from "./motherboard/MotherboardList";
+import { Dropdown } from "react-bootstrap";
+import { MotherboardList } from "./motherboard/MotherboardList";
+
 
 export const BuildArea = () => {
 
     return (
     <>
-
       <main className="px-2 py-2 dashboard__container">
         
         <div className="graphics-cards__container">
@@ -23,7 +25,19 @@ export const BuildArea = () => {
           <div className="build-area__container">
             <div className="build-area">
             <h1>Build Area</h1>
-            {/* <MotherboardDropdown /> */}
+            {/* <div className="motherboard__list">
+              
+            </div> */}
+            <Dropdown>
+    <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+      Dropdown Button
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu variant="dark">
+      <MotherboardList />
+    </Dropdown.Menu>
+  </Dropdown>
+
             </div>
             <div className="build-area-totals ">
               {/* <h1>Build Area Totals</h1> */}
@@ -64,5 +78,4 @@ export const BuildArea = () => {
       </main>
     </>
     )
-  
 }
