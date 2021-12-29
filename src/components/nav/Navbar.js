@@ -13,9 +13,9 @@ class NavBar extends Component {
                         <Navbar.Brand>
                             <img
                                 src={require('../../imgs/app-logo.png')}
-                                width="400"
-                                height="400"
-                                className="d-inline-block align-top"
+                                width="315"
+                                height="95"
+                                className="d-inline-block align-top logo"
                                 alt="Build-A-Rig Logo"
                             />
                         </Navbar.Brand>
