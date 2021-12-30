@@ -18,9 +18,9 @@ export const Dashboard = () => {
         {/* Graphics Card List */}
         <div className="graphics-cards__container">
           {/* <h1>Graphics Cards</h1> */}
-          <div className="graphics-cards__list">
-            <GraphicsCardList/>
-          </div>
+              <div className="graphics-cards__list">
+                <GraphicsCardList/>
+              </div>
         </div>
         
         <div className="build__container">
@@ -34,8 +34,8 @@ export const Dashboard = () => {
                 {/* <h1>Build Area</h1> */}
                 <div className="dropzone">
                   <Dropzone dropzoneSize={dropzoneSize}/>
-                {/* area that will display boxes for number of gpu supported by mobo */}
-                </div> 
+                  {/* area that will display boxes for number of gpu supported by mobo */}
+                </div>
               </div>
             </div>
             
