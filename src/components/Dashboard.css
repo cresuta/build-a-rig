@@ -33,6 +33,21 @@
   display: grid;
   grid-template-rows: 15% 85%;
 }
+
+.build-area__dropzone {
+  border: 1px solid black;
+  margin: 0.75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropzone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 /* right of build area */
 .build-area-totals {
   background-color: #80D0C7;

@@ -1,12 +1,15 @@
-import React from "react";
-import "./BuildArea.css";
+import React, { useState } from "react";
+import "./Dashboard.css";
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
-import { MotherboardList } from "./motherboard/MotherboardList";
-import { Dropdown } from "react-bootstrap";
+import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
+import { Dropzone } from "./rig_build/Dropzone";
 
-export const BuildArea = () => {
+export const Dashboard = () => {
+
+
+  const [dropzoneSize,setDropzoneSize] = useState(0);
 
     return (
     <>
@@ -25,17 +28,14 @@ export const BuildArea = () => {
           <div className="build-area__container">
             <div className="build-area">
               <div className="motherboard__list">
-                <Dropdown>
-                <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-                Pick A Motherboard
-                </Dropdown.Toggle>
-                <Dropdown.Menu variant="dark">
-                  <MotherboardList/>
-                </Dropdown.Menu>
-                </Dropdown>
+                <MotherboardDropdown setDropzoneSize={setDropzoneSize}/>
               </div>
-              <div className="drag-drop__build-area">
-                <h1>Build Area</h1>
+              <div className="build-area__dropzone">
+                {/* <h1>Build Area</h1> */}
+                <div className="dropzone">
+                  <Dropzone dropzoneSize={dropzoneSize}/>
+                {/* area that will display boxes for number of gpu supported by mobo */}
+                </div> 
               </div>
             </div>
             
