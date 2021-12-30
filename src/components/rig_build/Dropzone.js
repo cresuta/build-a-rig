@@ -29,8 +29,8 @@ export const Dropzone = ({dropzoneSize}) => {
         //     return sum
         // })}</div>
 
-        motherboards.map(() => {
-            return <div className="gpu-slot">GPU Slot</div>
+        motherboards.map((mobo,i) => {
+            return <div className="gpu-slot gpu19">GPU {i}</div>  
         })
         
     )

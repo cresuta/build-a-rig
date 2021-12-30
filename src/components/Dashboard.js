@@ -49,7 +49,7 @@ export const Dashboard = () => {
               </div>
               <div className="save-build">
                 <Link to='/#' >
-                  <button className="ghost" id="save-build"><span>Save Build <i class="bi bi-cloud-download"></i></span></button> 
+                  <button className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer"></i></span></button> 
                 </Link>
               </div>
             </div>
