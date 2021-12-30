@@ -1,8 +1,7 @@
-import { Dropdown } from "react-bootstrap"
 
 export const MotherboardCard = ({mobo}) => {
     
     return (
-        <Dropdown.Item href="#">{mobo.name}</Dropdown.Item>
+        <option value={mobo.num_of_cards_supported}>{mobo.name}</option>
     )
 }

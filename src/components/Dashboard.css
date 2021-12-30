@@ -31,8 +31,9 @@
   background: linear-gradient(315deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
   border-radius: 5px;
   display: grid;
-  grid-template-rows: 15% 85%;
+  grid-template-rows: 15% 75%;
 }
+
 /* right of build area */
 .build-area-totals {
   background-color: #80D0C7;

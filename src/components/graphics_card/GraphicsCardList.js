@@ -1,8 +1,7 @@
 import React, {useContext, useEffect} from "react"
 import { GraphicsCardContext } from "./GraphicsCardProvider"
 import { GraphicsCard } from "./GraphicsCard"
-import "./GraphicsCard.css"
-
+import "./GraphicsCard.css";
 
 export const GraphicsCardList = () => {
 
@@ -12,11 +11,15 @@ export const GraphicsCardList = () => {
         getGraphicsCards()
     }, [])
 
+    console.log(graphicsCards)
+
     return (
         <>
         {
             graphicsCards.map(gpu => {
-                return <GraphicsCard key={gpu.id} gpu={gpu} />
+                return (
+                     <GraphicsCard key={gpu.id} gpu={gpu} />
+                )
             })
         }   
         </>
