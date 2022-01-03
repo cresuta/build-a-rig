@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Dashboard.css";
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -6,14 +6,25 @@ import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
 import { HardwareCost, Hashrate, PowerConsumption } from "./rig_build/BuildAreaTotals";
+import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
 
 export const Dashboard = () => {
 
-
+  const {graphicsCards} = useContext(GraphicsCardContext);
   const [dropzoneSize,setDropzoneSize] = useState(0);
-  const [hardwareCost, setHardwareCost] = useState(0);
-  const [hashrate, setHashrate] = useState(0);
-  const [powerConsumption, setPowerConsumption] = useState(0);
+  const [gpuArray, setGraphicsCards] = useState([]);
+
+  // const [hardwareCost, setHardwareCost] = useState(0);
+  // const [hashrate, setHashrate] = useState(0);
+  // const [powerConsumption, setPowerConsumption] = useState(0);
+
+  // still needs fixed, but kind working
+  const addToArray = (e) => {
+    const newArray = [...gpuArray]
+    setGraphicsCards(newArray.concat(graphicsCards.find((gc) => {
+      return gc.id === +e.target.value
+    })))
+  }
 
     return (
     <>
@@ -37,7 +48,7 @@ export const Dashboard = () => {
               <div className="build-area__dropzone">
                 {/* <h1>Build Area</h1> */}
                 <div className="dropzone">
-                  <Dropzone dropzoneSize={dropzoneSize}/>
+                  <Dropzone dropzoneSize={dropzoneSize} addToArray={addToArray}/>
                   {/* area that will display boxes for number of gpu supported by mobo */}
                 </div>
               </div>
@@ -45,14 +56,25 @@ export const Dashboard = () => {
             
             {/* Build Area - Stat Totals */}
             <div className="build-area-totals">
-              <img className="ethereum-logo" src={require('../imgs/ethereum-logo-2.png')} alt="Build-A-Rig Logo" />
+              <div className="crypto-logo">
+                <img className="ethereum-logo" src={require('../imgs/ethereum-logo-2.png')} alt="Build-A-Rig Logo" />
+              </div>
               <div className="build-area-totals__list">
                 <h4>Hardware Cost</h4>
-                <HardwareCost hardwareCost={hardwareCost}/>
+                {/* Hardware Cost Total */}
+                <div className="hardware-cost">${gpuArray.reduce((previousCard, currentCard) => {
+                  return previousCard + currentCard.cost
+                }, 0)}</div>
                 <h4>Hash rate</h4>
-                <Hashrate hashrate={hashrate}/>
+                {/* Hashrate Total */}
+                <div className="hashrate">{gpuArray.reduce((previousCard, currentCard) => {
+                  return previousCard + currentCard.hashrate
+                }, 0)} MH/s</div>
                 <h4>Power Consumption</h4>
-                <PowerConsumption powerConsumption={powerConsumption}/>
+                {/* Power Consumption Total */}
+                <div className="power-consumption">{gpuArray.reduce((previousCard, currentCard) => {
+                  return previousCard + currentCard.power_consumption
+                }, 0)} W</div>
               </div>
               <div className="save-build">
                 <Link to='/#' >

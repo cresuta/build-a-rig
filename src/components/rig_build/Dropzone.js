@@ -2,7 +2,7 @@ import React from "react";
 import "./Dropzone.css";
 import { GraphicsCardDropdown } from "../graphics_card/GraphicsCardDropdown";
 
-export const Dropzone = ({dropzoneSize}) => {
+export const Dropzone = ({dropzoneSize, addToArray}) => {
 
     const motherboards = []
     
@@ -14,7 +14,7 @@ export const Dropzone = ({dropzoneSize}) => {
             return (
                 <div className="dropzone gpu-slot">
                     GPU {i}
-                    <GraphicsCardDropdown/>
+                    <GraphicsCardDropdown addToArray={addToArray}/>
                 </div> 
             )  
         }) 

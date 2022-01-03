@@ -18,6 +18,7 @@ export const GraphicsCard = ({gpu}) => {
 }
 
 export const GraphicsCardOption = ({gpu}) => {
+    
     return (
         <option value={gpu.id}>{gpu.name}</option>
     )

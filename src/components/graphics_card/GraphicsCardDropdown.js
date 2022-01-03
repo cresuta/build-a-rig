@@ -3,7 +3,7 @@ import { GraphicsCardContext } from "./GraphicsCardProvider";
 import { GraphicsCardOption } from "./GraphicsCard";
 import { useParams } from 'react-router-dom';
 
-export const GraphicsCardDropdown = () => {
+export const GraphicsCardDropdown = ({addToArray}) => {
 
   const {graphicsCards, getGraphicsCardById} = useContext(GraphicsCardContext);
 
@@ -25,16 +25,16 @@ export const GraphicsCardDropdown = () => {
    
   }, [])
 
-  const handleControlledDropdownChange = (e) => {
-      const newGraphicsCard = {...graphicsCard}
-      newGraphicsCard[e.target.id] = e.target.value
-      setGraphicsCard(newGraphicsCard)
-  }
+//   const handleControlledDropdownChange = (e) => {
+//       const newGraphicsCard = {...graphicsCard}
+//       newGraphicsCard[e.target.id] = e.target.value
+//       setGraphicsCard(newGraphicsCard)
+//   }
 
   return (
     <>
       <select
-        onChange={handleControlledDropdownChange}
+        onChange={addToArray}
         class="form-select gpu-dropdown bg-dark text-white border border-dark"
         aria-label="Default select example"
       >
