@@ -1,6 +1,6 @@
 import {Badge, Button} from 'react-bootstrap'
 
-// For click/drag card components under graphics card list container
+// Library of available gpu list - will feature hover over modal with additional details
 export const GraphicsCard = ({gpu}) => {
     if (gpu.brand === "Nvidia") {
         return (
@@ -15,4 +15,12 @@ export const GraphicsCard = ({gpu}) => {
             </Button>  
         )
     }
+}
+
+export const GraphicsCardOption = ({gpu}) => {
+
+        return (
+            <option value={gpu.id}>{gpu.name}</option>
+        )
+    
 }
