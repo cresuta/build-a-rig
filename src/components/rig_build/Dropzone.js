@@ -3,7 +3,7 @@ import "./Dropzone.css";
 import { GraphicsCardDropdown } from "../graphics_card/GraphicsCardDropdown";
 
 export const Dropzone = ({dropzoneSize}) => {
-    
+
     const motherboards = []
     
     for (let i = 0; i < dropzoneSize; i++) {

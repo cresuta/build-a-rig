@@ -13,6 +13,10 @@
   margin-top: 230px;
 }
 
+.gpu-library__heading {
+  margin: 5px auto 0 auto;
+}
+
 .build__container {
   display: grid;
   grid-template-rows: 50% 50%;

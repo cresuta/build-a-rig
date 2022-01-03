@@ -5,11 +5,15 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
+import { HardwareCost, Hashrate, PowerConsumption } from "./rig_build/BuildAreaTotals";
 
 export const Dashboard = () => {
 
 
   const [dropzoneSize,setDropzoneSize] = useState(0);
+  const [hardwareCost, setHardwareCost] = useState(0);
+  const [hashrate, setHashrate] = useState(0);
+  const [powerConsumption, setPowerConsumption] = useState(0);
 
     return (
     <>
@@ -17,7 +21,7 @@ export const Dashboard = () => {
         
         {/* Graphics Card List */}
         <div className="graphics-cards__container">
-          {/* <h1>Graphics Cards</h1> */}
+          <h2 className="gpu-library__heading">Graphics Card Library</h2>
               <div className="graphics-cards__list">
                 <GraphicsCardList/>
               </div>
@@ -43,9 +47,12 @@ export const Dashboard = () => {
             <div className="build-area-totals">
               <img className="ethereum-logo" src={require('../imgs/ethereum-logo-2.png')} alt="Build-A-Rig Logo" />
               <div className="build-area-totals__list">
-                <h2>Hardware Cost</h2>
-                <h2>Hash rate</h2>
-                <h2>Power Consumption</h2>
+                <h4>Hardware Cost</h4>
+                <HardwareCost hardwareCost={hardwareCost}/>
+                <h4>Hash rate</h4>
+                <Hashrate hashrate={hashrate}/>
+                <h4>Power Consumption</h4>
+                <PowerConsumption powerConsumption={powerConsumption}/>
               </div>
               <div className="save-build">
                 <Link to='/#' >
