@@ -96,7 +96,7 @@
   column-gap: 20px;
   text-align: center;
   margin-right: 45px;
-  margin-bottom: 169px;
+  margin-bottom: 170px;
 }
 
 .revenue, .electricity, .profit {
@@ -104,8 +104,20 @@
   border-radius: 5px;
 }
 
-p, .revenue, .electricity, .profit {
+.revenue h2, .electricity h2, .profit h2 {
+  margin-top: 2px;
+  margin-left: 0.75em;
   text-align: left;
-  padding-left: 20px;
+}
+
+.revenue-metrics, .electricity-metrics, .profit-metrics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.build-icon {
+  margin-left: 10px;
 }
 

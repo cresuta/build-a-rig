@@ -11,8 +11,6 @@ export const GraphicsCardList = () => {
         getGraphicsCards()
     }, [])
 
-    console.log(graphicsCards)
-
     return (
         <>
         {
