@@ -6,8 +6,8 @@ export const BuildAreaTotalProvider =(props) => {
 
     const [calculations, setCalculations] = useState([])
     
-    const getCalculations = (hashrate, powerConsumption) => {
-        return fetch(`https://www.coincalculators.io/api?name=ethereum&hashrate=${hashrate}&power=${powerConsumption}&powercost=0.1`)
+    const getCalculations = () => {
+        return fetch(`https://www.coincalculators.io/api?name=ethereum&hashrate=40000000&power=230&powercost=0.1&difficultytime=6`)
         .then(res => res.json())
         .then(setCalculations)
     } 

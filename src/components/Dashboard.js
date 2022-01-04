@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Dashboard.css";
 // import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -6,16 +6,31 @@ import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
 import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
+import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
 
 export const Dashboard = () => {
 
+  const {calculations, getCalculations} = useContext(BuildAreaTotalContext); 
+  
   const {graphicsCards} = useContext(GraphicsCardContext);
   const [dropzoneSize,setDropzoneSize] = useState(0);
   const [gpuArray, setGraphicsCards] = useState([]);
 
-  // const [hardwareCost, setHardwareCost] = useState(0);
-  // const [hashrate, setHashrate] = useState(0);
-  // const [powerConsumption, setPowerConsumption] = useState(0);
+  const [cost, setCost] = useState(0);
+  const [hashrate, setHashrate] = useState(0);
+  const [powerConsumption, setPowerConsumption] = useState(0);
+
+  useEffect(() => {
+    setCost(gpuArray.reduce((previousCard, currentCard) => {
+      return previousCard + currentCard.cost
+    }, 0));
+    setHashrate(gpuArray.reduce((previousCard, currentCard) => {
+      return Math.round((previousCard + currentCard.hashrate)*100)/100
+    }, 0));
+    setPowerConsumption(gpuArray.reduce((previousCard, currentCard) => {
+      return previousCard + currentCard.power_consumption
+    }, 0))
+  }, [gpuArray])
 
   // still needs fixed, but kinda working
   const addToArray = (e) => {
@@ -61,19 +76,13 @@ export const Dashboard = () => {
               <div className="build-area-totals__list">
                 <h4>Hardware Cost</h4>
                 {/* Hardware Cost Total */}
-                <div className="hardware-cost">${gpuArray.reduce((previousCard, currentCard) => {
-                  return previousCard + currentCard.cost
-                }, 0)}</div>
+                <div className="hardware-cost">${cost}</div>
                 <h4>Hash rate</h4>
                 {/* Hashrate Total */}
-                <div className="hashrate">{gpuArray.reduce((previousCard, currentCard) => {
-                  return previousCard + currentCard.hashrate
-                }, 0)} MH/s</div>
+                <div className="hashrate">{hashrate} MH/s</div>
                 <h4>Power Consumption</h4>
                 {/* Power Consumption Total */}
-                <div className="power-consumption">{gpuArray.reduce((previousCard, currentCard) => {
-                  return previousCard + currentCard.power_consumption
-                }, 0)} W</div>
+                <div className="power-consumption">{powerConsumption} W</div>
               </div>
               <div className="save-build">
                 {/* <Link to='/#' > */}

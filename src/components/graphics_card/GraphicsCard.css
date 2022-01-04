@@ -40,3 +40,17 @@
     height: 45px;
 }
 
+.modal-specs, .modal-specs-headings {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-specs-headings h5 {
+  font-size: 16px;
+}
+
+.modal .modal-content{
+  background-color: #80D0C7;
+}
+
