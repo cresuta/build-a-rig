@@ -13,6 +13,10 @@
   margin-top: 230px;
 }
 
+.gpu-library__heading {
+  margin: 5px auto 0 auto;
+}
+
 .build__container {
   display: grid;
   grid-template-rows: 50% 50%;
@@ -40,12 +44,22 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .build-area-totals__list {
   margin: 2em auto;
   text-align: center;
+}
+
+.build-area-totals__list h4 {
+  text-decoration: underline;
+}
+
+.hardware-cost, .hashrate, .power-consumption {
+  text-align: center;
+  margin: 10px;
 }
 
 /* Save Build btn */
@@ -71,7 +85,7 @@
 }
 
 #save-build {
-  margin-top: 3em;
+  margin-bottom: 1em;
 }
 
 .ethereum-logo {
@@ -86,7 +100,7 @@
   column-gap: 20px;
   text-align: center;
   margin-right: 45px;
-  margin-bottom: 169px;
+  margin-bottom: 170px;
 }
 
 .revenue, .electricity, .profit {
@@ -94,8 +108,20 @@
   border-radius: 5px;
 }
 
-p, .revenue, .electricity, .profit {
+.revenue h2, .electricity h2, .profit h2 {
+  margin-top: 2px;
+  margin-left: 0.75em;
   text-align: left;
-  padding-left: 20px;
+}
+
+.revenue-metrics, .electricity-metrics, .profit-metrics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.build-icon {
+  margin-left: 10px;
 }
 

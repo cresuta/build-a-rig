@@ -1,15 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Dashboard.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
+import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
+import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
 
 export const Dashboard = () => {
 
-
+  const {calculations, getCalculations} = useContext(BuildAreaTotalContext); 
+  
+  const {graphicsCards} = useContext(GraphicsCardContext);
   const [dropzoneSize,setDropzoneSize] = useState(0);
+  const [gpuArray, setGraphicsCards] = useState([]);
+
+  const [cost, setCost] = useState(0);
+  const [hashrate, setHashrate] = useState(0);
+  const [powerConsumption, setPowerConsumption] = useState(0);
+
+  useEffect(() => {
+    setCost(gpuArray.reduce((previousCard, currentCard) => {
+      return previousCard + currentCard.cost
+    }, 0));
+    setHashrate(gpuArray.reduce((previousCard, currentCard) => {
+      return Math.round((previousCard + currentCard.hashrate)*100)/100
+    }, 0));
+    setPowerConsumption(gpuArray.reduce((previousCard, currentCard) => {
+      return previousCard + currentCard.power_consumption
+    }, 0))
+  }, [gpuArray])
+
+  // still needs fixed, but kinda working
+  const addToArray = (e) => {
+    const newArray = [...gpuArray]
+    setGraphicsCards(newArray.concat(graphicsCards.find((gc) => {
+      return gc.id === +e.target.value
+    })))
+  }
 
     return (
     <>
@@ -17,7 +46,7 @@ export const Dashboard = () => {
         
         {/* Graphics Card List */}
         <div className="graphics-cards__container">
-          {/* <h1>Graphics Cards</h1> */}
+          <h2 className="gpu-library__heading">Graphics Card Library</h2>
               <div className="graphics-cards__list">
                 <GraphicsCardList/>
               </div>
@@ -33,7 +62,7 @@ export const Dashboard = () => {
               <div className="build-area__dropzone">
                 {/* <h1>Build Area</h1> */}
                 <div className="dropzone">
-                  <Dropzone dropzoneSize={dropzoneSize}/>
+                  <Dropzone dropzoneSize={dropzoneSize} addToArray={addToArray}/>
                   {/* area that will display boxes for number of gpu supported by mobo */}
                 </div>
               </div>
@@ -41,16 +70,37 @@ export const Dashboard = () => {
             
             {/* Build Area - Stat Totals */}
             <div className="build-area-totals">
-              <img className="ethereum-logo" src={require('../imgs/ethereum-logo-2.png')} alt="Build-A-Rig Logo" />
+              <div className="crypto-logo">
+                <img className="ethereum-logo" src={require('../imgs/ethereum-logo-2.png')} alt="Build-A-Rig Logo" />
+              </div>
               <div className="build-area-totals__list">
-                <h2>Hardware Cost</h2>
-                <h2>Hash rate</h2>
-                <h2>Power Consumption</h2>
+                <h4>Hardware Cost</h4>
+                {/* Hardware Cost Total */}
+                <div className="hardware-cost">${cost}</div>
+                <h4>Hash rate</h4>
+                {/* Hashrate Total */}
+                <div className="hashrate">{hashrate} MH/s</div>
+                <h4>Power Consumption</h4>
+                {/* Power Consumption Total */}
+                <div className="power-consumption">{powerConsumption} W</div>
               </div>
               <div className="save-build">
-                <Link to='/#' >
-                  <button className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer"></i></span></button> 
-                </Link>
+                {/* <Link to='/#' > */}
+                  <button onClick={() => {
+                    let hardwareCost = gpuArray.reduce((previousCard, currentCard) => {
+                      return previousCard + currentCard.cost
+                    }, 0) 
+                    let hashrate = gpuArray.reduce((previousCard, currentCard) => {
+                      return previousCard + currentCard.hashrate
+                    }, 0)
+                    let powerConsumption = gpuArray.reduce((previousCard, currentCard) => {
+                      return previousCard + currentCard.power_consumption
+                    }, 0)
+                    alert(hardwareCost)
+                    alert(hashrate)
+                    alert(powerConsumption)
+                  }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
+                {/* </Link> */}
               </div>
             </div>
           </div> 
@@ -58,19 +108,34 @@ export const Dashboard = () => {
           {/* Calculations - Revenue, Electricity, Profit */}
           <div className="calculation-metrics__container">
             <div className="revenue">
-              <p>Totals for Day, Month, Year</p>
-              <h1><i class="bi bi-currency-dollar"></i>Revenue</h1>
-              <div className="revenue-metrics"></div>
+              <h2>Revenue</h2>
+              {/* <p>Totals for Day, Week, Month, Year:</p> */}
+              <div className="revenue-metrics">
+                <p> /day</p>
+                <p> /week</p>
+                <p> /month</p>
+                <p> /year</p>
+              </div>
             </div>
             <div className="electricity">
-              <p>Totals for Day, Month, Year</p>
-              <h1><i class="bi bi-lightning-charge"></i>Electricity</h1>
-              <div className="electricity-metrics"></div>
+              <h2>Electricity</h2>
+              {/* <p>Totals for Day, Month, Year:</p> */}
+              <div className="electricity-metrics">
+                <p> /day</p>
+                <p> /week</p>
+                <p> /month</p>
+                <p> /year</p>
+              </div>
             </div>
             <div className="profit">
-              <p>Totals for Day, Month, Year</p>
-              <h1><i class="bi bi-cash-coin"></i>Profit</h1>
-              <div className="profit-metrics"></div>
+              <h2>Profit</h2>
+              {/* <p>Totals for Day, Month, Year:</p> */}
+              <div className="profit-metrics">
+                <p> /day</p>
+                <p> /week</p>
+                <p> /month</p>
+                <p> /year</p>
+              </div>
             </div>
           </div>
         </div>
