@@ -40,6 +40,11 @@
     height: 45px;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-specs, .modal-specs-headings {
   display: flex;
   justify-content: space-around;
@@ -53,4 +58,18 @@
 .modal .modal-content{
   background-color: #80D0C7;
 }
+
+.modal-brand, .modal-cost, .modal-hashrate, .modal-power-consumption {
+  font-size: 0.9em;
+}
+
+.modal {
+  width: 400px;
+  position: fixed;
+  top: 250px;
+  left: 45px;
+}
+
+
+
 
