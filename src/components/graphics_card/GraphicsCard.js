@@ -10,9 +10,6 @@ export const GraphicsCard = ({gpu}) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
-
-
     if (gpu.brand === "Nvidia") {
            
         return ( 

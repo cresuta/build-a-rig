@@ -1,46 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { GraphicsCardContext } from "./GraphicsCardProvider";
 import { GraphicsCardOption } from "./GraphicsCard";
-import { useParams } from 'react-router-dom';
 
-export const GraphicsCardDropdown = ({addToArray}) => {
+export const GraphicsCardDropdown = ({addToArray, index}) => {
 
-  const {graphicsCards, getGraphicsCardById} = useContext(GraphicsCardContext);
+  const {graphicsCards} = useContext(GraphicsCardContext);
 
-  const [graphicsCard, setGraphicsCard] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  const {graphicsCardId} = useParams();
-    
-  useEffect(() => {
-      if(graphicsCardId) {
-        getGraphicsCardById()
-        .then(graphicsCard => {
-            setGraphicsCard(graphicsCard)
-            setIsLoading(false)
-        })
-      } else {
-          setIsLoading(true)
-      }
-   
-  }, [])
-
-//   const handleControlledDropdownChange = (e) => {
-//       const newGraphicsCard = {...graphicsCard}
-//       newGraphicsCard[e.target.id] = e.target.value
-//       setGraphicsCard(newGraphicsCard)
-//   }
-
+  
   return (
     <>
       <select
         onChange={addToArray}
         class="form-select gpu-dropdown bg-dark text-white border border-dark"
         aria-label="Default select example"
+        id={`gpu-drop-${index}`}
       >
         <option value="0">Pick A GPU</option>
             {graphicsCards.map((gpu) => {
-                return <GraphicsCardOption key={gpu.id} id={gpu.id} gpu={gpu} />;
+                return <GraphicsCardOption value={gpu.id} key={gpu.id} id={gpu.id} gpu={gpu} />;
             })}
       </select>
     </>
