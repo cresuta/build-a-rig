@@ -6,39 +6,70 @@ import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
 import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
-import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
+// import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
 
 export const Dashboard = () => {
 
-  const {calculations, getCalculations} = useContext(BuildAreaTotalContext); 
+  // const {calculations, getCalculations} = useContext(BuildAreaTotalContext); 
   
   const {graphicsCards} = useContext(GraphicsCardContext);
-  const [dropzoneSize,setDropzoneSize] = useState(0);
-  const [gpuArray, setGraphicsCards] = useState([]);
+  const [dropzoneSize,setDropzoneSize] = useState([]);
+  const [gpuArray, setGpuArray] = useState([]);
 
   const [cost, setCost] = useState(0);
   const [hashrate, setHashrate] = useState(0);
   const [powerConsumption, setPowerConsumption] = useState(0);
 
   useEffect(() => {
-    setCost(gpuArray.reduce((previousCard, currentCard) => {
-      return previousCard + currentCard.cost
-    }, 0));
-    setHashrate(gpuArray.reduce((previousCard, currentCard) => {
-      return Math.round((previousCard + currentCard.hashrate)*100)/100
-    }, 0));
-    setPowerConsumption(gpuArray.reduce((previousCard, currentCard) => {
-      return previousCard + currentCard.power_consumption
-    }, 0))
+    // setCost(gpuArray.reduce((previousCard, currentCard) => {
+    //   return previousCard + currentCard.cost
+    // }, 0));
+
+    let costSum = 0;
+    let hashrateSum = 0;
+    let powerConsumptionSum = 0;
+    
+    gpuArray.forEach((gpu) => {
+      if(gpu === 0) {
+        costSum += gpu
+        hashrateSum += gpu
+        powerConsumptionSum += gpu
+      } else {
+        costSum += gpu.cost
+        hashrateSum += (Math.round((gpu.hashrate)*100)/100)
+        powerConsumptionSum += gpu.power_consumption
+      }
+    })
+    setCost(costSum)
+    setHashrate(hashrateSum)
+    setPowerConsumption(powerConsumptionSum)
+    // setHashrate(gpuArray.reduce((previousCard, currentCard) => {
+    //   return Math.round((previousCard + currentCard.hashrate)*100)/100
+    // }, 0));
+    // setPowerConsumption(gpuArray.reduce((previousCard, currentCard) => {
+    //   return previousCard + currentCard.power_consumption
+    // }, 0))
   }, [gpuArray])
+
+  useEffect(() => {
+    const arraySize = []
+    for(let i = 0; i < dropzoneSize; i++) {
+      arraySize.push(0)
+    }
+    setGpuArray(arraySize)
+    setCost(0)
+    setHashrate(0)
+    setPowerConsumption(0)
+  }, [dropzoneSize])
 
   // still needs fixed, but kinda working
   const addToArray = (e) => {
     const newArray = [...gpuArray]
-    setGraphicsCards(newArray.concat(graphicsCards.find((gc) => {
-      return gc.id === +e.target.value
-    })))
+    const whichDrop = +e.target.id.split('-')[2]
+    newArray.splice(whichDrop,1,graphicsCards.find((gc) => gc.id === +e.target.value))
+    setGpuArray(newArray)
   }
+
 
     return (
     <>

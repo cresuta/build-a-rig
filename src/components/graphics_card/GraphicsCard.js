@@ -10,9 +10,6 @@ export const GraphicsCard = ({gpu}) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
-
-
     if (gpu.brand === "Nvidia") {
            
         return ( 
@@ -23,9 +20,9 @@ export const GraphicsCard = ({gpu}) => {
 
             <Modal show={show} onHide={handleClose} className="modal">
                 <Modal.Header closeButton>
-                <Modal.Title>{gpu.name}</Modal.Title>
+                <Modal.Title className="modal-title">{gpu.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="modal-body">
                     <div className="modal-specs-headings">
                         <h5>Brand</h5>
                         <h5>Cost</h5>
@@ -40,9 +37,7 @@ export const GraphicsCard = ({gpu}) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="dark" onClick={handleClose}>
-                        Close
-                    </Button>
+                    <Button variant="dark" onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
             </>
@@ -56,9 +51,9 @@ export const GraphicsCard = ({gpu}) => {
             
             <Modal show={show} onHide={handleClose} className="modal">
                 <Modal.Header closeButton>
-                <Modal.Title>{gpu.name}</Modal.Title>
+                <Modal.Title className="modal-title">{gpu.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="modal-body">
                     <div className="modal-specs-headings">
                         <h5>Brand</h5>
                         <h5>Cost</h5>
@@ -73,9 +68,7 @@ export const GraphicsCard = ({gpu}) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="dark" onClick={handleClose}>
-                        Close
-                    </Button>
+                    <Button variant="dark" onClick={handleClose}>Close</Button>
                 </Modal.Footer>
             </Modal>
             </> 
