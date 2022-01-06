@@ -19,12 +19,10 @@ export const Dashboard = () => {
   const [cost, setCost] = useState(0);
   const [hashrate, setHashrate] = useState(0);
   const [powerConsumption, setPowerConsumption] = useState(0);
+  const [electricity, setElectricity] = useState([]);
 
   useEffect(() => {
-    // setCost(gpuArray.reduce((previousCard, currentCard) => {
-    //   return previousCard + currentCard.cost
-    // }, 0));
-
+    
     let costSum = 0;
     let hashrateSum = 0;
     let powerConsumptionSum = 0;
@@ -36,19 +34,14 @@ export const Dashboard = () => {
         powerConsumptionSum += gpu
       } else {
         costSum += gpu.cost
-        hashrateSum += (Math.round((gpu.hashrate)*100)/100)
+        hashrateSum += gpu.hashrate
         powerConsumptionSum += gpu.power_consumption
       }
     })
     setCost(costSum)
-    setHashrate(hashrateSum)
+    setHashrate(Math.round(hashrateSum * 100) / 100)
     setPowerConsumption(powerConsumptionSum)
-    // setHashrate(gpuArray.reduce((previousCard, currentCard) => {
-    //   return Math.round((previousCard + currentCard.hashrate)*100)/100
-    // }, 0));
-    // setPowerConsumption(gpuArray.reduce((previousCard, currentCard) => {
-    //   return previousCard + currentCard.power_consumption
-    // }, 0))
+    
   }, [gpuArray])
 
   useEffect(() => {
@@ -62,12 +55,24 @@ export const Dashboard = () => {
     setPowerConsumption(0)
   }, [dropzoneSize])
 
-  // still needs fixed, but kinda working
   const addToArray = (e) => {
     const newArray = [...gpuArray]
     const whichDrop = +e.target.id.split('-')[2]
     newArray.splice(whichDrop,1,graphicsCards.find((gc) => gc.id === +e.target.value))
     setGpuArray(newArray)
+  }
+
+  const calculateElectricityCost = (totalWatts) => {
+    const ELECTRIC_COST = 0.13;
+    const electricCostArray = []
+    const watts = totalWatts;
+    const kwhPerMonth = ((watts*24)/1000)*30;
+    const costPerDay = ((kwhPerMonth*ELECTRIC_COST)/30).toFixed(2)
+    const costPerWeek = ((kwhPerMonth*ELECTRIC_COST)/4).toFixed(2)
+    const costPerMonth = ((kwhPerMonth*ELECTRIC_COST)).toFixed(2)
+    const costPerYear = ((kwhPerMonth*ELECTRIC_COST)*12).toFixed(2)
+    electricCostArray.push(costPerDay,costPerWeek,costPerMonth,costPerYear)
+    setElectricity(electricCostArray)
   }
 
 
@@ -118,18 +123,8 @@ export const Dashboard = () => {
               <div className="save-build">
                 {/* <Link to='/#' > */}
                   <button onClick={() => {
-                    let hardwareCost = gpuArray.reduce((previousCard, currentCard) => {
-                      return previousCard + currentCard.cost
-                    }, 0) 
-                    let hashrate = gpuArray.reduce((previousCard, currentCard) => {
-                      return previousCard + currentCard.hashrate
-                    }, 0)
-                    let powerConsumption = gpuArray.reduce((previousCard, currentCard) => {
-                      return previousCard + currentCard.power_consumption
-                    }, 0)
-                    alert(hardwareCost)
-                    alert(hashrate)
-                    alert(powerConsumption)
+                    // function call here (fetch call would be here, then set to state)
+                    calculateElectricityCost(powerConsumption)
                   }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
                 {/* </Link> */}
               </div>
@@ -152,10 +147,10 @@ export const Dashboard = () => {
               <h2>Electricity</h2>
               {/* <p>Totals for Day, Month, Year:</p> */}
               <div className="electricity-metrics">
-                <p> /day</p>
-                <p> /week</p>
-                <p> /month</p>
-                <p> /year</p>
+                <p><span>${electricity[0]}</span> /day</p>
+                <p><span>${electricity[1]}</span> /week</p>
+                <p><span>${electricity[2]}</span> /month</p>
+                <p><span>${electricity[3]}</span> /year</p>
               </div>
             </div>
             <div className="profit">
