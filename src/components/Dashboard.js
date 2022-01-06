@@ -1,16 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Dashboard.css";
-// import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { GraphicsCardList } from "./graphics_card/GraphicsCardList";
 import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
 import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
-// import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
+import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
 
 export const Dashboard = () => {
 
-  // const {calculations, getCalculations} = useContext(BuildAreaTotalContext); 
+  const {ethData, getEthData} = useContext(BuildAreaTotalContext); 
   
   const {graphicsCards} = useContext(GraphicsCardContext);
   const [dropzoneSize,setDropzoneSize] = useState([]);
@@ -20,6 +19,7 @@ export const Dashboard = () => {
   const [hashrate, setHashrate] = useState(0);
   const [powerConsumption, setPowerConsumption] = useState(0);
   const [electricity, setElectricity] = useState([]);
+  const [revenue, setRevenue] = useState([]);
 
   useEffect(() => {
     
@@ -55,6 +55,10 @@ export const Dashboard = () => {
     setPowerConsumption(0)
   }, [dropzoneSize])
 
+  useEffect(() => {
+    getEthData()
+  }, [])
+
   const addToArray = (e) => {
     const newArray = [...gpuArray]
     const whichDrop = +e.target.id.split('-')[2]
@@ -65,16 +69,35 @@ export const Dashboard = () => {
   const calculateElectricityCost = (totalWatts) => {
     const ELECTRIC_COST = 0.13;
     const electricCostArray = []
-    const watts = totalWatts;
-    const kwhPerMonth = ((watts*24)/1000)*30;
+
+    const kwhPerMonth = ((totalWatts*24)/1000)*30;
     const costPerDay = ((kwhPerMonth*ELECTRIC_COST)/30).toFixed(2)
     const costPerWeek = ((kwhPerMonth*ELECTRIC_COST)/4).toFixed(2)
     const costPerMonth = ((kwhPerMonth*ELECTRIC_COST)).toFixed(2)
     const costPerYear = ((kwhPerMonth*ELECTRIC_COST)*12).toFixed(2)
+
     electricCostArray.push(costPerDay,costPerWeek,costPerMonth,costPerYear)
     setElectricity(electricCostArray)
   }
 
+  const calculateRevenue = (totalHashrate) => {
+    const SECONDS_PER_DAY = 86400;
+    // block time was set to 13.7 after testing against mining calculators online to get revenue as close as I could
+    const ETH_BLOCK_TIME = 13.7;
+    const revenueArray = [];
+
+    const rigBuildHashrateShare = ((totalHashrate/((ethData[0].network_hashrate)/1000000)));
+    const dailyBlockReward = ((ethData[0].reward_block) * (SECONDS_PER_DAY/ETH_BLOCK_TIME));
+    const dailyEth = (rigBuildHashrateShare * dailyBlockReward);
+   
+    const dailyRevenueUSD = ((ethData[0].price) * dailyEth).toFixed(2);
+    const weeklyRevenueUSD = (((ethData[0].price) * dailyEth) * 4).toFixed(2);
+    const monthlyRevenueUSD = (((ethData[0].price) * dailyEth) * 30).toFixed(2);
+    const yearlyRevenueUSD = (((ethData[0].price) * dailyEth) * 365).toFixed(2);
+
+    revenueArray.push(dailyRevenueUSD,weeklyRevenueUSD,monthlyRevenueUSD,yearlyRevenueUSD);
+    setRevenue(revenueArray);
+  }
 
     return (
     <>
@@ -111,20 +134,20 @@ export const Dashboard = () => {
               </div>
               <div className="build-area-totals__list">
                 <h4>Hardware Cost</h4>
-                {/* Hardware Cost Total */}
                 <div className="hardware-cost">${cost}</div>
                 <h4>Hash rate</h4>
                 {/* Hashrate Total */}
                 <div className="hashrate">{hashrate} MH/s</div>
                 <h4>Power Consumption</h4>
                 {/* Power Consumption Total */}
-                <div className="power-consumption">{powerConsumption} W</div>
+                <div className="power-consumption">{powerConsumption} Watts</div>
               </div>
               <div className="save-build">
                 {/* <Link to='/#' > */}
                   <button onClick={() => {
                     // function call here (fetch call would be here, then set to state)
-                    calculateElectricityCost(powerConsumption)
+                    calculateElectricityCost(powerConsumption);
+                    calculateRevenue(hashrate);
                   }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
                 {/* </Link> */}
               </div>
@@ -135,17 +158,15 @@ export const Dashboard = () => {
           <div className="calculation-metrics__container">
             <div className="revenue">
               <h2>Revenue</h2>
-              {/* <p>Totals for Day, Week, Month, Year:</p> */}
               <div className="revenue-metrics">
-                <p> /day</p>
-                <p> /week</p>
-                <p> /month</p>
-                <p> /year</p>
+                <p><span>${revenue[0]}</span> /day</p>
+                <p><span>${revenue[1]}</span> /week</p>
+                <p><span>${revenue[2]}</span> /month</p>
+                <p><span>${revenue[3]}</span> /year</p>
               </div>
             </div>
             <div className="electricity">
-              <h2>Electricity</h2>
-              {/* <p>Totals for Day, Month, Year:</p> */}
+              <h2>Electricity Costs</h2>
               <div className="electricity-metrics">
                 <p><span>${electricity[0]}</span> /day</p>
                 <p><span>${electricity[1]}</span> /week</p>
@@ -154,13 +175,12 @@ export const Dashboard = () => {
               </div>
             </div>
             <div className="profit">
-              <h2>Profit</h2>
-              {/* <p>Totals for Day, Month, Year:</p> */}
+              <h2>Profit<span>(revenue - electric cost)</span></h2>
               <div className="profit-metrics">
-                <p> /day</p>
-                <p> /week</p>
-                <p> /month</p>
-                <p> /year</p>
+                <p><span>$</span> /day</p>
+                <p><span>$</span> /week</p>
+                <p><span>$</span> /month</p>
+                <p><span>$</span> /year</p>
               </div>
             </div>
           </div>

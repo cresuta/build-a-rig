@@ -4,17 +4,17 @@ export const BuildAreaTotalContext = createContext();
 
 export const BuildAreaTotalProvider =(props) => {
 
-    const [calculations, setCalculations] = useState([])
+    const [ethData, setEthData] = useState([])
     
-    const getCalculations = () => {
-        return fetch(`https://www.coincalculators.io/api?name=ethereum&hashrate=40000000&power=230&powercost=0.1&difficultytime=6`)
+    const getEthData = () => {
+        return fetch(`https://api.minerstat.com/v2/coins?list=ETH`)
         .then(res => res.json())
-        .then(setCalculations)
+        .then(setEthData)
     } 
     
     return (
         <BuildAreaTotalContext.Provider value={{
-            calculations, getCalculations
+            ethData, getEthData
         }}>
             {props.children}
         </BuildAreaTotalContext.Provider>
