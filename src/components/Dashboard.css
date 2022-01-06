@@ -121,7 +121,7 @@
   align-items: center;
 }
 
-.electricity-metrics span {
+.electricity-metrics span, .revenue-metrics span, .profit-metrics span {
   font-size: 20px;
   font-weight: 600;
 }
