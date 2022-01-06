@@ -121,6 +121,11 @@
   align-items: center;
 }
 
+.electricity-metrics span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .build-icon {
   margin-left: 10px;
 }
