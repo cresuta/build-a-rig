@@ -23,6 +23,8 @@ export const Dashboard = () => {
   const [revenue, setRevenue] = useState([]);
   const [profit, setProfit] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     
     let costSum = 0;
@@ -60,6 +62,10 @@ export const Dashboard = () => {
   useEffect(() => {
     getEthData()
   }, [])
+
+  useEffect(() => {
+    calculateProfit(revenue,electricity);
+  }, [revenue])
 
   const addToArray = (e) => {
     const newArray = [...gpuArray]
@@ -100,19 +106,44 @@ export const Dashboard = () => {
     setRevenue(revenueArray);
   }
 
-  // const calculateProfit = (revenueArray,electricityArray) => {
-  //   console.log(`revenue array - ${revenueArray}`)
-  //   console.log(`electricity array - ${electricityArray}`)
-  //   const profitArray = [];
-    
-  //   const dailyProfit = revenueArray[0] - electricityArray[0];
-  //   const weeklyProfit =  revenueArray[1] - electricityArray[1];
-  //   const monthlyProfit =  revenueArray[2] - electricityArray[2];
-  //   const yearlyProfit =  revenueArray[3] - electricityArray[3];
+  const handleSaveEvent = () => {
+    // if (!gpuArray) {
+    //   window.alert('Please select a gpu before saving your rig build.')
+    //   // todo: figure out where the data is stored that you want to save?
+    //   const rigToSave = {
+    //     name: "my rig build",
+    //     date: // something from state
+    //   }
+    //   saveRigBuild(rigToSave)
+    //   .then(objectYouJustPosted => {
+    //     console.log(objectYouJustPosted.id)
+    //     // Todo: loop over gpuArray
+    //     // Todo: Inside the loop, construct join tables objects using the gpu's id and the id of the thing you just posted
 
-  //   profitArray.push(dailyProfit,weeklyProfit,monthlyProfit,yearlyProfit);
-  //   setProfit(profitArray)
-  // }
+    //     // -- Stoo here and ask for help!! --//
+    //     // Todo: loop over join tables objects and construct array of fetch calls (try a .forEach)
+    //     // Todo: once you have an array of fetch calls, pass the array into a Promise.all()
+    //   })
+    // } else {
+    //   setIsLoading(true)
+      
+    // }
+    
+  }
+
+  const calculateProfit = (revenueArray,electricityArray) => {
+    console.log("revenue array ",revenueArray)
+    console.log("electricity array", electricityArray)
+    const profitArray = [];
+    
+    const dailyProfit = +(revenueArray[0] - electricityArray[0]).toFixed(2);
+    const weeklyProfit =  +(revenueArray[1] - electricityArray[1]).toFixed(2);
+    const monthlyProfit =  +(revenueArray[2] - electricityArray[2]).toFixed(2);
+    const yearlyProfit =  +(revenueArray[3] - electricityArray[3]).toFixed(2);
+
+    profitArray.push(dailyProfit,weeklyProfit,monthlyProfit,yearlyProfit);
+    setProfit(profitArray)
+  }
 
     return (
     <>
@@ -166,9 +197,7 @@ export const Dashboard = () => {
                     // calculateProfit(revenue,electricity);
                   }} className="ghost" id="build-rig"><span>Build<i class="bi bi-hammer build-rig-icon"></i></span></button> 
                 {/* </Link> */}
-                <button onClick={() => {
-                    
-                  }} className="ghost" id="save-rig"><span>Save<i class="bi bi-cloud-download save-rig-icon"></i></span></button> 
+                <button onClick={handleSaveEvent} className="ghost" id="save-rig"><span>Save<i class="bi bi-cloud-download save-rig-icon"></i></span></button> 
               </div>
             </div>
           </div> 
@@ -196,14 +225,11 @@ export const Dashboard = () => {
             <div className="profit">
               <h2>Profit<span>(revenue - electric cost)</span></h2>
               <div className="profit-metrics">
-                <p><span>${(revenue[0]-electricity[0]).toFixed(2)}</span> /day</p>
-                <p><span>${(revenue[1]-electricity[1]).toFixed(2)}</span> /week</p>
-                <p><span>${(revenue[2]-electricity[2]).toFixed(2)}</span> /month</p>
-                <p><span>${(revenue[3]-electricity[3]).toFixed(2)}</span> /year</p>
+                <p><span>${profit[0]}</span> /day</p>
+                <p><span>${profit[1]}</span> /week</p>
+                <p><span>${profit[2]}</span> /month</p>
+                <p><span>${profit[3]}</span> /year</p>
               </div>
-              {/* <div>
-                <p><span>({cost/(revenue[0]-electricity[0]).toFixed(2)}days break even)</span></p>
-              </div> */}
             </div>
           </div>
         </div>
