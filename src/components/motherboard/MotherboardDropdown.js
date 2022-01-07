@@ -16,7 +16,9 @@ export const MotherboardDropdown = ({setDropzoneSize}) => {
   return (
     <>
       <select
-        onChange={(e) => setDropzoneSize(e.target.value)}
+        onChange={(e) => {
+          setDropzoneSize(e.target.value)}
+        }
         class="form-select motherboard-select bg-dark text-white border border-dark"
         aria-label="Default select example"
       >

@@ -17,7 +17,7 @@ class Nutshell extends Component {
 }
 
 const Auth = () => {
-  if (localStorage.getItem('react_nutshell_user')) {
+  if (localStorage.getItem('build_a_rig_user')) {
     
     return(
       <>

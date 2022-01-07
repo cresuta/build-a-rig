@@ -92,9 +92,10 @@
   margin-right: 1em;
 }
 
-/* Saverig btn */
+/* Save rig btn */
 #save-rig {
   background-color: transparent;
+  color: #292b2c;
   border: 1px solid #292b2c;
   text-align: center;
   transition: all 0.3s;
