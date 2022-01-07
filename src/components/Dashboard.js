@@ -198,10 +198,12 @@ export const Dashboard = () => {
                 <p><span>${(revenue[2]-electricity[2]).toFixed(2)}</span> /month</p>
                 <p><span>${(revenue[3]-electricity[3]).toFixed(2)}</span> /year</p>
               </div>
+              {/* <div>
+                <p><span>({cost/(revenue[0]-electricity[0]).toFixed(2)}days break even)</span></p>
+              </div> */}
             </div>
           </div>
         </div>
-        
       </main>
     </>
     )
