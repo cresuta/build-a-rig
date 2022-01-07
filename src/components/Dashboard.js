@@ -18,8 +18,10 @@ export const Dashboard = () => {
   const [cost, setCost] = useState(0);
   const [hashrate, setHashrate] = useState(0);
   const [powerConsumption, setPowerConsumption] = useState(0);
+
   const [electricity, setElectricity] = useState([]);
   const [revenue, setRevenue] = useState([]);
+  const [profit, setProfit] = useState([]);
 
   useEffect(() => {
     
@@ -82,8 +84,7 @@ export const Dashboard = () => {
 
   const calculateRevenue = (totalHashrate) => {
     const SECONDS_PER_DAY = 86400;
-    // block time was set to 13.7 after testing against mining calculators online to get revenue as close as I could
-    const ETH_BLOCK_TIME = 13.7;
+    const ETH_BLOCK_TIME = 13;
     const revenueArray = [];
 
     const rigBuildHashrateShare = ((totalHashrate/((ethData[0].network_hashrate)/1000000)));
@@ -98,6 +99,20 @@ export const Dashboard = () => {
     revenueArray.push(dailyRevenueUSD,weeklyRevenueUSD,monthlyRevenueUSD,yearlyRevenueUSD);
     setRevenue(revenueArray);
   }
+
+  // const calculateProfit = (revenueArray,electricityArray) => {
+  //   console.log(`revenue array - ${revenueArray}`)
+  //   console.log(`electricity array - ${electricityArray}`)
+  //   const profitArray = [];
+    
+  //   const dailyProfit = revenueArray[0] - electricityArray[0];
+  //   const weeklyProfit =  revenueArray[1] - electricityArray[1];
+  //   const monthlyProfit =  revenueArray[2] - electricityArray[2];
+  //   const yearlyProfit =  revenueArray[3] - electricityArray[3];
+
+  //   profitArray.push(dailyProfit,weeklyProfit,monthlyProfit,yearlyProfit);
+  //   setProfit(profitArray)
+  // }
 
     return (
     <>
@@ -146,8 +161,9 @@ export const Dashboard = () => {
                 {/* <Link to='/#' > */}
                   <button onClick={() => {
                     // function call here (fetch call would be here, then set to state)
-                    calculateElectricityCost(powerConsumption);
                     calculateRevenue(hashrate);
+                    calculateElectricityCost(powerConsumption);
+                    // calculateProfit(revenue,electricity);
                   }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
                 {/* </Link> */}
               </div>
@@ -177,10 +193,10 @@ export const Dashboard = () => {
             <div className="profit">
               <h2>Profit<span>(revenue - electric cost)</span></h2>
               <div className="profit-metrics">
-                <p><span>$</span> /day</p>
-                <p><span>$</span> /week</p>
-                <p><span>$</span> /month</p>
-                <p><span>$</span> /year</p>
+                <p><span>${(revenue[0]-electricity[0]).toFixed(2)}</span> /day</p>
+                <p><span>${(revenue[1]-electricity[1]).toFixed(2)}</span> /week</p>
+                <p><span>${(revenue[2]-electricity[2]).toFixed(2)}</span> /month</p>
+                <p><span>${(revenue[3]-electricity[3]).toFixed(2)}</span> /year</p>
               </div>
             </div>
           </div>
