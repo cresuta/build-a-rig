@@ -157,15 +157,18 @@ export const Dashboard = () => {
                 {/* Power Consumption Total */}
                 <div className="power-consumption">{powerConsumption} Watts</div>
               </div>
-              <div className="save-build">
+              <div className="rig-build-btns">
                 {/* <Link to='/#' > */}
                   <button onClick={() => {
                     // function call here (fetch call would be here, then set to state)
                     calculateRevenue(hashrate);
                     calculateElectricityCost(powerConsumption);
                     // calculateProfit(revenue,electricity);
-                  }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
+                  }} className="ghost" id="build-rig"><span>Build<i class="bi bi-hammer build-rig-icon"></i></span></button> 
                 {/* </Link> */}
+                <button onClick={() => {
+                    
+                  }} className="ghost" id="save-rig"><span>Save<i class="bi bi-cloud-download save-rig-icon"></i></span></button> 
               </div>
             </div>
           </div> 
