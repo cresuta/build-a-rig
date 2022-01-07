@@ -55,7 +55,7 @@ export const Dashboard = () => {
     setCost(costSum)
     setHashrate(Math.round(hashrateSum * 100) / 100)
     setPowerConsumption(powerConsumptionSum)
-    
+    setProfit(0)
   }, [gpuArray])
 
   useEffect(() => {
@@ -199,6 +199,8 @@ export const Dashboard = () => {
         setRevenue(0);
         setProfit(0);
         setElectricity(0);
+        setDropzoneSize(0);
+        
       })
     }
     
