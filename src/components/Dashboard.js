@@ -26,13 +26,12 @@ export const Dashboard = () => {
   const [revenue, setRevenue] = useState([]);
   const [profit, setProfit] = useState([]);
 
-
   const [isLoading, setIsLoading] = useState(true);
   
   const {motherboards} = useContext(MotherboardContext);
   const {saveRigBuild, getRigBuildById, updateRigBuild} = useContext(RigBuildContext);
   const [rigBuild, setRigBuild] = useState({});
-  const {rigBuildId} = useParams();
+  // const {rigBuildId} = useParams();
   const navigate = useNavigate();
 
 
@@ -137,12 +136,10 @@ export const Dashboard = () => {
   // }
 
   const handleSaveEvent = () => {
-    if (!gpuArray) {
+    if (cost === 0 || hashrate === 0 || powerConsumption === 0) {
       window.alert('Please select a gpu before saving your rig build.')
     } else {
       setIsLoading(true)
-      // console.log("type of motherboard card supported ", typeof motherboards[0].num_of_cards_supported)
-      // console.log("type of dropzonesize ",typeof +dropzoneSize)
       saveRigBuild({
         name: "Rig Build",
         date: Date().split(' G')[0],
@@ -165,14 +162,43 @@ export const Dashboard = () => {
         yearlyProfit: profit[3]
       })
       // .then(() => navigate("/"))
-      .then(objectYouJustPosted => {
-        console.log(objectYouJustPosted.id)
+      .then(savedRigBuild => {
+        console.log(savedRigBuild.id)
+        const joinTableArray = gpuArray.map((gpu) => {
+          const joinTableObj = {
+            rigBuildId: savedRigBuild.id,
+            graphicsCardId: gpu.id
+          };
+          console.log("JOIN TABLE OBJ ",joinTableObj);
+          return joinTableObj;
+        })
+        console.log("THIS IS JOIN TABLE ARRAY",joinTableArray)
         // Todo: loop over gpuArray
         // Todo: Inside the loop, construct join tables objects using the gpu's id and the id of the thing you just posted
 
         // -- Stoo here and ask for help!! --//
         // Todo: loop over join tables objects and construct array of fetch calls (try a .forEach)
         // Todo: once you have an array of fetch calls, pass the array into a Promise.all()
+        Promise.all(joinTableArray.map(singleJoinObj => {
+          fetch("http://localhost:8088/rigBuilds_graphicsCards", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(singleJoinObj)
+        })
+
+        })).then(() => {
+          console.log("by jove it worked")
+        })
+      })
+      .then(() => {
+        setCost(0);
+        setHashrate(0);
+        setPowerConsumption(0)
+        setRevenue(0);
+        setProfit(0);
+        setElectricity(0);
       })
     }
     
