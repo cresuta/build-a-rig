@@ -62,30 +62,71 @@
   margin: 10px;
 }
 
-/* Save Build btn */
-#save-build {
+/* Build-rig btn */
+#build-rig {
   background-color: transparent;
   border: 1px solid #ffffff;
   text-align: center;
   transition: all 0.3s;
   cursor: pointer;
+  width: auto;
+  padding: 15px;
 }
 
-#save-build:hover {
+#build-rig:hover {
 	background-color: white;
 	border-color: #ffffff;
 	color: #80D0C7;
 }
 
-#save-build span {
+#build-rig span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  
+}
+
+#build-rig {
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+/* Save rig btn */
+#save-rig {
+  background-color: transparent;
+  color: #292b2c;
+  border: 1px solid #292b2c;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: auto;
+  padding: 15px;
+}
+
+#save-rig:hover {
+	background-color: #292b2c;
+	border-color: #292b2c;
+	color: #80D0C7;
+}
+
+#save-rig span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-#save-build {
+#save-rig {
   margin-bottom: 1em;
+}
+
+.build-rig-icon, .save-rig-icon {
+  margin-left: 10px;
+}
+
+.rig-build-btns {
+  display: flex;
 }
 
 .ethereum-logo {
@@ -124,9 +165,5 @@
 .electricity-metrics span, .revenue-metrics span, .profit-metrics span {
   font-size: 20px;
   font-weight: 600;
-}
-
-.build-icon {
-  margin-left: 10px;
 }
 

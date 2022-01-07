@@ -27,7 +27,7 @@ export const LoginRegister = (props) => {
     existingLoginUserCheck()
     .then(userExists => {
       if (userExists) {
-        localStorage.setItem('react_nutshell_user', userExists.id);
+        localStorage.setItem('build_a_rig_user', userExists.id);
         navigate('/');
       } else {
         setShow(true);
@@ -62,7 +62,7 @@ export const LoginRegister = (props) => {
         .then(res => res.json())
         .then(createdUser => {
             if (createdUser.hasOwnProperty("id")) {
-              localStorage.setItem("react_nutshell_user", createdUser.id);
+              localStorage.setItem("build_a_rig_user", createdUser.id);
               navigate("/");
             }
         })

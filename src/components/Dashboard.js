@@ -6,6 +6,9 @@ import { MotherboardDropdown } from "./motherboard/MotherboardDropdown";
 import { Dropzone } from "./rig_build/Dropzone";
 import { GraphicsCardContext } from "./graphics_card/GraphicsCardProvider";
 import { BuildAreaTotalContext } from "./rig_build/BuildAreaTotalProvider";
+import { RigBuildContext } from "./rig_build/RigBuildProvider";
+import { useNavigate, useParams } from "react-router-dom";
+import { MotherboardContext } from "./motherboard/MotherboardProvider";
 
 export const Dashboard = () => {
 
@@ -18,8 +21,19 @@ export const Dashboard = () => {
   const [cost, setCost] = useState(0);
   const [hashrate, setHashrate] = useState(0);
   const [powerConsumption, setPowerConsumption] = useState(0);
+
   const [electricity, setElectricity] = useState([]);
   const [revenue, setRevenue] = useState([]);
+  const [profit, setProfit] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const {motherboards} = useContext(MotherboardContext);
+  const {saveRigBuild, getRigBuildById, updateRigBuild} = useContext(RigBuildContext);
+  const [rigBuild, setRigBuild] = useState({});
+  // const {rigBuildId} = useParams();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     
@@ -41,7 +55,7 @@ export const Dashboard = () => {
     setCost(costSum)
     setHashrate(Math.round(hashrateSum * 100) / 100)
     setPowerConsumption(powerConsumptionSum)
-    
+    setProfit(0)
   }, [gpuArray])
 
   useEffect(() => {
@@ -59,6 +73,10 @@ export const Dashboard = () => {
     getEthData()
   }, [])
 
+  useEffect(() => {
+    calculateProfit(revenue,electricity);
+  }, [revenue])
+
   const addToArray = (e) => {
     const newArray = [...gpuArray]
     const whichDrop = +e.target.id.split('-')[2]
@@ -70,11 +88,11 @@ export const Dashboard = () => {
     const ELECTRIC_COST = 0.13;
     const electricCostArray = []
 
-    const kwhPerMonth = ((totalWatts*24)/1000)*30;
-    const costPerDay = ((kwhPerMonth*ELECTRIC_COST)/30).toFixed(2)
-    const costPerWeek = ((kwhPerMonth*ELECTRIC_COST)/4).toFixed(2)
-    const costPerMonth = ((kwhPerMonth*ELECTRIC_COST)).toFixed(2)
-    const costPerYear = ((kwhPerMonth*ELECTRIC_COST)*12).toFixed(2)
+    const kwhPerMonth = +((totalWatts*24)/1000)*30;
+    const costPerDay = +((kwhPerMonth*ELECTRIC_COST)/30).toFixed(2)
+    const costPerWeek = +((kwhPerMonth*ELECTRIC_COST)/4).toFixed(2)
+    const costPerMonth = +((kwhPerMonth*ELECTRIC_COST)).toFixed(2)
+    const costPerYear = +((kwhPerMonth*ELECTRIC_COST)*12).toFixed(2)
 
     electricCostArray.push(costPerDay,costPerWeek,costPerMonth,costPerYear)
     setElectricity(electricCostArray)
@@ -82,21 +100,110 @@ export const Dashboard = () => {
 
   const calculateRevenue = (totalHashrate) => {
     const SECONDS_PER_DAY = 86400;
-    // block time was set to 13.7 after testing against mining calculators online to get revenue as close as I could
-    const ETH_BLOCK_TIME = 13.7;
+    const ETH_BLOCK_TIME = 13;
     const revenueArray = [];
 
-    const rigBuildHashrateShare = ((totalHashrate/((ethData[0].network_hashrate)/1000000)));
-    const dailyBlockReward = ((ethData[0].reward_block) * (SECONDS_PER_DAY/ETH_BLOCK_TIME));
-    const dailyEth = (rigBuildHashrateShare * dailyBlockReward);
+    const rigBuildHashrateShare = +((totalHashrate/((ethData[0].network_hashrate)/1000000)));
+    const dailyBlockReward = +((ethData[0].reward_block) * (SECONDS_PER_DAY/ETH_BLOCK_TIME));
+    const dailyEth = +(rigBuildHashrateShare * dailyBlockReward);
    
-    const dailyRevenueUSD = ((ethData[0].price) * dailyEth).toFixed(2);
-    const weeklyRevenueUSD = (((ethData[0].price) * dailyEth) * 4).toFixed(2);
-    const monthlyRevenueUSD = (((ethData[0].price) * dailyEth) * 30).toFixed(2);
-    const yearlyRevenueUSD = (((ethData[0].price) * dailyEth) * 365).toFixed(2);
+    const dailyRevenueUSD = +((ethData[0].price) * dailyEth).toFixed(2);
+    const weeklyRevenueUSD = +(((ethData[0].price) * dailyEth) * 4).toFixed(2);
+    const monthlyRevenueUSD = +(((ethData[0].price) * dailyEth) * 30).toFixed(2);
+    const yearlyRevenueUSD = +(((ethData[0].price) * dailyEth) * 365).toFixed(2);
 
     revenueArray.push(dailyRevenueUSD,weeklyRevenueUSD,monthlyRevenueUSD,yearlyRevenueUSD);
     setRevenue(revenueArray);
+  }
+
+  const calculateProfit = (revenueArray,electricityArray) => {
+    const profitArray = [];
+    
+    const dailyProfit = +(revenueArray[0] - electricityArray[0]).toFixed(2);
+    const weeklyProfit =  +(revenueArray[1] - electricityArray[1]).toFixed(2);
+    const monthlyProfit =  +(revenueArray[2] - electricityArray[2]).toFixed(2);
+    const yearlyProfit =  +(revenueArray[3] - electricityArray[3]).toFixed(2);
+
+    profitArray.push(dailyProfit,weeklyProfit,monthlyProfit,yearlyProfit);
+    setProfit(profitArray)
+  }
+
+  // const handleControlledInputChange = (e) => {
+  //   const newRigBuild = {...rigBuild}
+  //   newRigBuild[e.target.name] = e.target.value;
+  //   // update state
+  //   setRigBuild(newRigBuild)
+  // }
+
+  const handleSaveEvent = () => {
+    if (cost === 0 || hashrate === 0 || powerConsumption === 0) {
+      window.alert('Please select a gpu before saving your rig build.')
+    } else {
+      setIsLoading(true)
+      saveRigBuild({
+        name: "Rig Build",
+        date: Date().split(' G')[0],
+        userId: parseInt(localStorage.getItem("build_a_rig_user")),
+        motherboardId: motherboards.find(mobo => mobo.num_of_cards_supported === +dropzoneSize).id,
+        hardwareCostTotal: cost,
+        hashrateTotal: hashrate,
+        powerConsumptionTotal: powerConsumption,
+        dailyRevenue: revenue[0],
+        weeklyRevenue: revenue[1],
+        monthlyRevenue: revenue[2],
+        yearlyRevenue: revenue[3],
+        dailyElectricity: electricity[0],
+        weeklyElectricity: electricity[1],
+        monthlyElectricity: electricity[2],
+        yearlyElectricity: electricity[3],
+        dailyProfit: profit[0],
+        weeklyProfit: profit[1],
+        monthlyProfit: profit[2],
+        yearlyProfit: profit[3]
+      })
+      // .then(() => navigate("/"))
+      .then(savedRigBuild => {
+        console.log(savedRigBuild.id)
+        const joinTableArray = gpuArray.map((gpu) => {
+          const joinTableObj = {
+            rigBuildId: savedRigBuild.id,
+            graphicsCardId: gpu.id
+          };
+          console.log("JOIN TABLE OBJ ",joinTableObj);
+          return joinTableObj;
+        })
+        console.log("THIS IS JOIN TABLE ARRAY",joinTableArray)
+        // Todo: loop over gpuArray
+        // Todo: Inside the loop, construct join tables objects using the gpu's id and the id of the thing you just posted
+
+        // -- Stoo here and ask for help!! --//
+        // Todo: loop over join tables objects and construct array of fetch calls (try a .forEach)
+        // Todo: once you have an array of fetch calls, pass the array into a Promise.all()
+        Promise.all(joinTableArray.map(singleJoinObj => {
+          fetch("http://localhost:8088/rigBuilds_graphicsCards", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(singleJoinObj)
+        })
+
+        })).then(() => {
+          console.log("by jove it worked")
+        })
+      })
+      .then(() => {
+        setCost(0);
+        setHashrate(0);
+        setPowerConsumption(0)
+        setRevenue(0);
+        setProfit(0);
+        setElectricity(0);
+        setDropzoneSize(0);
+        
+      })
+    }
+    
   }
 
     return (
@@ -142,14 +249,13 @@ export const Dashboard = () => {
                 {/* Power Consumption Total */}
                 <div className="power-consumption">{powerConsumption} Watts</div>
               </div>
-              <div className="save-build">
-                {/* <Link to='/#' > */}
+              <div className="rig-build-btns">
                   <button onClick={() => {
-                    // function call here (fetch call would be here, then set to state)
-                    calculateElectricityCost(powerConsumption);
                     calculateRevenue(hashrate);
-                  }} className="ghost" id="save-build"><span>Build!<i class="bi bi-hammer build-icon"></i></span></button> 
-                {/* </Link> */}
+                    calculateElectricityCost(powerConsumption);
+                    // calculateProfit(revenue,electricity);
+                  }} className="ghost" id="build-rig"><span>Build<i class="bi bi-hammer build-rig-icon"></i></span></button> 
+                <button onClick={handleSaveEvent} className="ghost" id="save-rig"><span>Save<i class="bi bi-cloud-download save-rig-icon"></i></span></button> 
               </div>
             </div>
           </div> 
@@ -177,15 +283,14 @@ export const Dashboard = () => {
             <div className="profit">
               <h2>Profit<span>(revenue - electric cost)</span></h2>
               <div className="profit-metrics">
-                <p><span>$</span> /day</p>
-                <p><span>$</span> /week</p>
-                <p><span>$</span> /month</p>
-                <p><span>$</span> /year</p>
+                <p><span>${profit[0]}</span> /day</p>
+                <p><span>${profit[1]}</span> /week</p>
+                <p><span>${profit[2]}</span> /month</p>
+                <p><span>${profit[3]}</span> /year</p>
               </div>
             </div>
           </div>
         </div>
-        
       </main>
     </>
     )
