@@ -4,37 +4,23 @@ export const PreviousRigBuildGraphicsCardContext = createContext();
 
 export const PreviousRigBuildGraphicsCardProvider = (props) => {
 
-    const [rigBuilds,setRigBuilds] = useState([]);
-    const [graphicsCards, setGraphicsCards] = useState([]);
-    const [joinTable, setJoinTable] = useState([]);
+    const [rigBuildsGraphicsCards, setRigBuildsGraphicsCards] = useState([]);
 
-    const getRigBuilds = () => {
-        return fetch("http://localhost:8088/rigBuilds?_expand=motherboards")
+    const getRigBuildsGraphicsCards = () => {
+        return fetch("http://localhost:8088/rigBuilds_graphicsCards")
         .then(res => res.json())
-        .then(setRigBuilds)
+        .then(setRigBuildsGraphicsCards)
     }
 
-    const getGraphicsCards = () => {
-        return fetch("http://localhost:8088/graphicsCards")
-        .then(res => res.json())
-        .then(setGraphicsCards)
-    }
-
-    const getJoinTable = () => {
-        return fetch("http://localhost:8088/rigBuilds_graphicsCards?_expand=rigBuilds?_expand=graphicsCards")
-        .then(res => res.json())
-        .then(setJoinTable)
-    }
-
-    const getJoinTableById = (id) => {
+    const getRigBuildsGraphicsCardsById = (id) => {
         return fetch(`http://localhost:8088/rigBuilds_graphicsCards/${id}`)
         .then(res => res.json())
-        .then(setJoinTable)
+        .then(setRigBuildsGraphicsCards)
     }
 
     return (
         <PreviousRigBuildGraphicsCardContext.Provider value={{
-            rigBuilds,getRigBuilds,graphicsCards,getGraphicsCards,joinTable,getJoinTable,getJoinTableById
+            rigBuildsGraphicsCards,getRigBuildsGraphicsCards,getRigBuildsGraphicsCardsById
         }}>
             {props.children}
         </PreviousRigBuildGraphicsCardContext.Provider>

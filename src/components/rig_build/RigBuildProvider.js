@@ -7,7 +7,7 @@ export const RigBuildProvider = (props) => {
     const [rigBuilds,setRigBuilds] = useState([]);
 
     const getRigBuilds = () => {
-        return fetch("http://localhost:8088/rigBuilds?_expand=motherboards")
+        return fetch("http://localhost:8088/rigBuilds?_expand=motherboard")
         .then(res => res.json())
         .then(setRigBuilds)
     }
