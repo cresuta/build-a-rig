@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "./nav/Navbar";
+import Footer from "./footer/Footer"
 import ApplicationViews from "./ApplicationViews";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { LoginRegister } from "./auth/Login-Register"
+import { LoginRegister } from "./auth/Login-Register";
 
 class Nutshell extends Component {
   render() {
@@ -23,6 +24,7 @@ const Auth = () => {
       <>
         <Navbar />
         <ApplicationViews />
+        <Footer />
       </>
     );
   } else {
