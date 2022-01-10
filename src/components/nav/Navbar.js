@@ -28,7 +28,8 @@ class NavBar extends Component {
                                 </Navbar.Brand>
                             </Dropdown.Toggle>
                             <Dropdown.Menu variant="dark">
-                                <Dropdown.Item href="#/action-1">Previous Rig Builds</Dropdown.Item>
+                                <Dropdown.Item href="/">Dashboard</Dropdown.Item>  
+                                <Dropdown.Item href="/previous-rig-builds">Previous Rig Builds</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item href="/login">Sign Out</Dropdown.Item>
                             </Dropdown.Menu>

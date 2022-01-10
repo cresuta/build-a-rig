@@ -229,7 +229,6 @@ export const Dashboard = () => {
                 {/* <h1>Build Area</h1> */}
                 <div className="dropzone">
                   <Dropzone dropzoneSize={dropzoneSize} addToArray={addToArray}/>
-                  {/* area that will display boxes for number of gpu supported by mobo */}
                 </div>
               </div>
             </div>
