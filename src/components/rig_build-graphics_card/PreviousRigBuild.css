@@ -1,0 +1,52 @@
+/* .accordion-item {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.accordion-header {
+    display: grid; 
+} */
+
+
+.card-btn__previous {
+    width: 105px;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 4px;
+    cursor: pointer;
+}
+
+.card-brand__previous {
+    align-self: flex-end;
+    margin-top: 0.4em;
+    font-size: 6px;
+}
+
+.accordion-header__gpu-list {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    right: 550px;
+}
+
+
+.previous-rig-builds {
+  max-height: 50vh;
+  margin-bottom: 200px;
+}
+
+.previous-rig-builds-accordion {
+  width: 95vw;
+  max-height: 50vh;
+  margin-bottom: 200px;
+}
+
+.previous-rig-builds__heading {
+  position: absolute;
+  top: 200px;
+  right: 720px;
+  color: white;
+}
