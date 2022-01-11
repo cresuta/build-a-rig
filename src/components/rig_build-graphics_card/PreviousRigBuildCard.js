@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PreviousRigBuild.css";
 import Accordion from "react-bootstrap/Accordion";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { Badge, Button } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 
 export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
+  
   return (
     <>
       <Accordion.Item eventKey={rigBuild.id} className="accordion-item">
@@ -28,7 +29,7 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
           </Col>
         </Accordion.Header>
         <Accordion.Body>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="dark" className="table-1">
             <thead>
               <tr>
                 <th>Coin</th>
@@ -42,11 +43,11 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
                 <td>Ethereum</td>
                 <td>${rigBuild.hardwareCostTotal}</td>
                 <td>{rigBuild.hashrateTotal} MH/s</td>
-                <td>{rigBuild.hardwareCostTotal} Watts</td>
+                <td>{rigBuild.powerConsumptionTotal} Watts</td>
               </tr>
             </tbody>
           </Table>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="dark" className="table-2">
             <thead>
               <tr>
                 <th></th>
@@ -58,21 +59,21 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
             </thead>
             <tbody>
               <tr>
-                <td>Revenue</td>
+                <th>Revenue</th>
                 <td>${rigBuild.dailyRevenue}</td>
                 <td>${rigBuild.weeklyRevenue}</td>
                 <td>${rigBuild.monthlyRevenue}</td>
                 <td>${rigBuild.yearlyRevenue}</td>
               </tr>
               <tr>
-                <td>Electricity</td>
+                <th>Electricity</th>
                 <td>${rigBuild.dailyElectricity}</td>
                 <td>${rigBuild.weeklyElectricity}</td>
                 <td>${rigBuild.monthlyElectricity}</td>
                 <td>${rigBuild.yearlyElectricity}</td>
               </tr>
               <tr>
-                <td>Profit</td>
+                <th>Profit</th>
                 <td>${rigBuild.dailyProfit}</td>
                 <td>${rigBuild.weeklyProfit}</td>
                 <td>${rigBuild.monthlyProfit}</td>
