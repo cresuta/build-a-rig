@@ -11,7 +11,7 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
     <>
       <Accordion.Item eventKey={rigBuild.id} className="accordion-item">
         <Accordion.Header className="accordion-header">
-          <Col>{rigBuild.date}</Col>
+          <Col className="accordion-header__date">{rigBuild.date}</Col>
           <Col className="accordion-header__gpu-list">
             {gpuArray.map((gpu) => {
               return (
