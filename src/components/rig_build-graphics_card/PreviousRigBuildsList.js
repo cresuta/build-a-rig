@@ -25,8 +25,6 @@ export const PreviousRigBuildsList = () => {
     getRigBuildsGraphicsCards();
   }, []);
 
-  // Sort each previous rig build by date
-
   return (
     <>
       <h2 className="previous-rig-builds__heading">Previous Rig Builds</h2>

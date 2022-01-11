@@ -166,7 +166,7 @@ export const Dashboard = () => {
         })
         
         Promise.all(joinTableArray.map(singleJoinObj => {
-          fetch("http://localhost:8088/rigBuilds_graphicsCards", {
+          fetch("http://localhost:8088/rigBuildsGraphicsCards", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

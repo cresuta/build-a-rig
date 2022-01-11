@@ -49,6 +49,7 @@
 .accordion-item {
   width: 95vw;
   margin: 0 auto;
+  border: 2px solid #292b2c;
 }
 
 .accordion-item:active {
@@ -67,6 +68,38 @@
 .table-1 {
   width: 36.6vw;
   margin: 1em auto;
+}
+
+/* Delete rig btn */
+#delete-rig {
+  background-color: transparent;
+  color: #292b2c;
+  border: 1px solid #292b2c;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: auto;
+  padding: 15px;
+  position: relative;
+  left: 50%;
+  margin-left: -100px;
+}
+
+#delete-rig:hover {
+	background-color: #292b2c;
+	border-color: #292b2c;
+	color: #80D0C7;
+}
+
+#delete-rig span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.delete-rig-icon {
+  margin-left: 10px;
 }
 
 
