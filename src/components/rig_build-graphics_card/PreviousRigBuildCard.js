@@ -28,7 +28,7 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
             })}
           </Col>
         </Accordion.Header>
-        <Accordion.Body>
+        <Accordion.Body className="accordion-body">
           <Table striped bordered hover variant="dark" className="table-1">
             <thead>
               <tr>

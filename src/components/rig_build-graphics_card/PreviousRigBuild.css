@@ -28,6 +28,9 @@
     left: 245px;
 }
 
+.accordion-body {
+  /* background: #292b2c; */
+}
 
 .previous-rig-builds {
   max-height: 50vh;
@@ -46,6 +49,10 @@
 .accordion-item {
   width: 95vw;
   margin: 0 auto;
+}
+
+.accordion-item:active {
+  background-color: white;
 }
 
 .previous-rig-builds__heading {
