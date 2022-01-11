@@ -34,10 +34,18 @@
   margin-bottom: 200px;
 }
 
+/* main container for accordion */
 .previous-rig-builds-accordion {
+  width: 100vw;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.accordion-item {
   width: 95vw;
-  max-height: 50vh;
-  /* margin-bottom: 200px; */
+  margin: 0 auto;
 }
 
 .previous-rig-builds__heading {
