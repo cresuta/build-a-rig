@@ -1,20 +1,20 @@
 .card-btn__previous {
-    width: 105px;
-    height: 35px;
-    border-radius: 5px;
-    font-size: 8px;
-    display: flex;
-    flex-direction: column;
-    padding: 6px 4px;
-    cursor: pointer;
-    font-weight: 800;
-    margin: 0 1px;
+  width: 105px;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 4px;
+  cursor: pointer;
+  font-weight: 800;
+  margin: 0 1px;
 }
 
 .card-brand__previous {
-    align-self: flex-end;
-    margin-top: 0.6em;
-    font-size: 6px;
+  align-self: flex-end;
+  margin-top: 0.6em;
+  font-size: 6px;
 }
 
 .accordion-header__date {
@@ -22,14 +22,9 @@
 }
 
 .accordion-header__gpu-list {
-    display: flex;
-    /* flex-wrap: wrap; */
-    position: absolute;
-    left: 245px;
-}
-
-.accordion-body {
-  /* background: #292b2c; */
+  display: flex;
+  position: absolute;
+  left: 245px;
 }
 
 .previous-rig-builds {
@@ -86,9 +81,9 @@
 }
 
 #delete-rig:hover {
-	background-color: #292b2c;
-	border-color: #292b2c;
-	color: #80D0C7;
+  background-color: #292b2c;
+  border-color: #292b2c;
+  color: #80d0c7;
 }
 
 #delete-rig span {
@@ -101,5 +96,3 @@
 .delete-rig-icon {
   margin-left: 10px;
 }
-
-

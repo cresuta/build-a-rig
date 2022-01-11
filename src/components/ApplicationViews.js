@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import React, { Component } from "react";
-import {Dashboard} from "./Dashboard"
+import { Dashboard } from "./Dashboard";
 import { GraphicsCardProvider } from "./graphics_card/GraphicsCardProvider";
 import { MotherboardProvider } from "./motherboard/MotherboardProvider";
 import { BuildAreaTotalProvider } from "./rig_build/BuildAreaTotalProvider";
@@ -9,7 +9,6 @@ import { PreviousRigBuildsList } from "./rig_build-graphics_card/PreviousRigBuil
 import { PreviousRigBuildGraphicsCardProvider } from "./rig_build-graphics_card/PreviousRigBuildGraphicsCardProvider";
 
 export default class ApplicationViews extends Component {
-
   render() {
     return (
       <React.Fragment>
@@ -18,10 +17,13 @@ export default class ApplicationViews extends Component {
             <BuildAreaTotalProvider>
               <RigBuildProvider>
                 <PreviousRigBuildGraphicsCardProvider>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />    
-                <Route path="/previous-rig-builds/*" element={<PreviousRigBuildsList/>} />      
-              </Routes>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route
+                      path="/previous-rig-builds/*"
+                      element={<PreviousRigBuildsList />}
+                    />
+                  </Routes>
                 </PreviousRigBuildGraphicsCardProvider>
               </RigBuildProvider>
             </BuildAreaTotalProvider>

@@ -13,7 +13,8 @@ class Footer extends Component {
               href="https://github.com/cresuta/build-a-rig"
               target="_blank"
               className="footer-text"
-            ><i class="bi bi-github github-icon"></i>Build-A-Rig | 2021
+            >
+              <i class="bi bi-github github-icon"></i>Build-A-Rig | 2021
             </Navbar.Brand>
           </Container>
         </Col>
