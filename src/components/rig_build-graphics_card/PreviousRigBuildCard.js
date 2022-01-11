@@ -1,25 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./PreviousRigBuild.css";
 import Accordion from "react-bootstrap/Accordion";
 import { Col } from "react-bootstrap";
 import { Badge, Button } from "react-bootstrap";
 import { Table } from "react-bootstrap";
-import { PreviousRigBuildGraphicsCardContext } from "./PreviousRigBuildGraphicsCardProvider";
 import { RigBuildContext } from "../rig_build/RigBuildProvider";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
-
-  const {deleteRigBuildById} = useContext(RigBuildContext);
- 
+  const { deleteRigBuildById } = useContext(RigBuildContext);
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    deleteRigBuildById(rigBuild.id)
-    .then(() => {
-      navigate("/previous-rig-builds")
-    })
-  }
+    deleteRigBuildById(rigBuild.id).then(() => {
+      navigate("/previous-rig-builds");
+    });
+  };
 
   return (
     <>
@@ -100,25 +96,6 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
               Delete Rig<i class="bi bi-trash delete-rig-icon"></i>
             </span>
           </Button>
-          {/* <Container className="accordion-container">
-            <Col className="totals-container">
-              <Row className="build-area-row">
-                <h4>Hardware Cost</h4>
-                <div className="hardware-cost">
-                  ${rigBuild.hardwareCostTotal}
-                </div>
-                <h4>Hash rate</h4>
-                <div className="hashrate">{rigBuild.hashrateTotal} MH/s</div>
-                <h4>Power Consumption</h4>
-                <div className="power-consumption">
-                  {rigBuild.powerConsumptionTotal} Watts
-                </div>
-              </Row>
-              <Row className="calculations-row">
-                <h4>Revenue</h4>
-              </Row>
-            </Col>
-          </Container> */}
         </Accordion.Body>
       </Accordion.Item>
     </>

@@ -29,10 +29,15 @@
   column-gap: 20px;
   margin-right: 65px;
 }
+
 /* Contains motherboard list dropdown and build area */
 .build-area {
-  background: rgb(128,208,199);
-  background: linear-gradient(315deg, rgba(128,208,199,1) 35%, rgba(0,147,233,1) 68%);
+  background: rgb(128, 208, 199);
+  background: linear-gradient(
+    315deg,
+    rgba(128, 208, 199, 1) 35%,
+    rgba(0, 147, 233, 1) 68%
+  );
   border-radius: 5px;
   display: grid;
   grid-template-rows: 15% 75%;
@@ -40,7 +45,7 @@
 
 /* right of build area */
 .build-area-totals {
-  background-color: #80D0C7;
+  background-color: #80d0c7;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -57,7 +62,9 @@
   text-decoration: underline;
 }
 
-.hardware-cost, .hashrate, .power-consumption {
+.hardware-cost,
+.hashrate,
+.power-consumption {
   text-align: center;
   margin: 10px;
 }
@@ -74,9 +81,9 @@
 }
 
 #build-rig:hover {
-	background-color: white;
-	border-color: #ffffff;
-	color: #80D0C7;
+  background-color: white;
+  border-color: #ffffff;
+  color: #80d0c7;
 }
 
 #build-rig span {
@@ -84,7 +91,6 @@
   display: inline-block;
   position: relative;
   transition: 0.5s;
-  
 }
 
 #build-rig {
@@ -105,9 +111,9 @@
 }
 
 #save-rig:hover {
-	background-color: #292b2c;
-	border-color: #292b2c;
-	color: #80D0C7;
+  background-color: #292b2c;
+  border-color: #292b2c;
+  color: #80d0c7;
 }
 
 #save-rig span {
@@ -121,7 +127,8 @@
   margin-bottom: 1em;
 }
 
-.build-rig-icon, .save-rig-icon {
+.build-rig-icon,
+.save-rig-icon {
   margin-left: 10px;
 }
 
@@ -144,26 +151,37 @@
   margin-bottom: 170px;
 }
 
-.revenue, .electricity, .profit {
-  background-color: #0093E9;
+.revenue,
+.electricity,
+.profit {
+  background-color: #0093e9;
   border-radius: 5px;
 }
 
-.revenue h2, .electricity h2, .profit h2 {
+.revenue h2,
+.electricity h2,
+.profit h2 {
   margin-top: 2px;
   margin-left: 0.75em;
   text-align: left;
 }
 
-.revenue-metrics, .electricity-metrics, .profit-metrics {
+.revenue-metrics,
+.electricity-metrics,
+.profit-metrics {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.electricity-metrics span, .revenue-metrics span, .profit-metrics span {
+.electricity-metrics span,
+.revenue-metrics span,
+.profit-metrics span {
   font-size: 20px;
   font-weight: 600;
 }
 
+.metric-heading-span {
+  margin-left: 5px;
+}

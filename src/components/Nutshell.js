@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./nav/Navbar";
-import Footer from "./footer/Footer"
+import Footer from "./footer/Footer";
 import ApplicationViews from "./ApplicationViews";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { LoginRegister } from "./auth/Login-Register";
@@ -18,9 +18,8 @@ class Nutshell extends Component {
 }
 
 const Auth = () => {
-  if (localStorage.getItem('build_a_rig_user')) {
-    
-    return(
+  if (localStorage.getItem("build_a_rig_user")) {
+    return (
       <>
         <Navbar />
         <ApplicationViews />
@@ -30,6 +29,6 @@ const Auth = () => {
   } else {
     return <Navigate to="/login" />;
   }
-}
+};
 
 export default Nutshell;
