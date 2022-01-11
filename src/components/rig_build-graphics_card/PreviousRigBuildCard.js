@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PreviousRigBuild.css";
 import Accordion from "react-bootstrap/Accordion";
 import { Col } from "react-bootstrap";
 import { Badge, Button } from "react-bootstrap";
 import { Table } from "react-bootstrap";
+import { PreviousRigBuildGraphicsCardContext } from "./PreviousRigBuildGraphicsCardProvider";
+import { RigBuildContext } from "../rig_build/RigBuildProvider";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
-  
+
+  const {deleteRigBuildById} = useContext(RigBuildContext);
+ 
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    deleteRigBuildById(rigBuild.id)
+    .then(() => {
+      navigate("/previous-rig-builds")
+    })
+  }
+
   return (
     <>
       <Accordion.Item eventKey={rigBuild.id} className="accordion-item">
@@ -81,6 +95,11 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
               </tr>
             </tbody>
           </Table>
+          <Button onClick={handleDelete} id="delete-rig">
+            <span>
+              Delete Rig<i class="bi bi-trash delete-rig-icon"></i>
+            </span>
+          </Button>
           {/* <Container className="accordion-container">
             <Col className="totals-container">
               <Row className="build-area-row">

@@ -7,7 +7,7 @@ export const RigBuildProvider = (props) => {
     const [rigBuilds,setRigBuilds] = useState([]);
 
     const getRigBuilds = () => {
-        return fetch("http://localhost:8088/rigBuilds?_expand=motherboard")
+        return fetch(`http://localhost:8088/rigBuilds?_expand=motherboard&userId=${localStorage.build_a_rig_user}`)
         .then(res => res.json())
         .then(setRigBuilds)
     }
@@ -28,7 +28,7 @@ export const RigBuildProvider = (props) => {
         .then(res => res.json())
     }
 
-    const deleteRigBuild = (id) => {
+    const deleteRigBuildById = (id) => {
         return fetch(`http://localhost:8088/rigBuilds/${id}`, {
             method: "DELETE"
         })
@@ -48,7 +48,7 @@ export const RigBuildProvider = (props) => {
 
       return (
           <RigBuildContext.Provider value={{
-              rigBuilds, getRigBuilds, getRigBuildById, saveRigBuild, deleteRigBuild, updateRigBuild
+              rigBuilds, getRigBuilds, getRigBuildById, saveRigBuild, deleteRigBuildById, updateRigBuild
           }}>
               {props.children}
           </RigBuildContext.Provider>
