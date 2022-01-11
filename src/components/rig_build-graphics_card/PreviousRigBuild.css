@@ -1,0 +1,72 @@
+.card-btn__previous {
+    width: 105px;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 4px;
+    cursor: pointer;
+    font-weight: 800;
+    margin: 0 1px;
+}
+
+.card-brand__previous {
+    align-self: flex-end;
+    margin-top: 0.6em;
+    font-size: 6px;
+}
+
+.accordion-header__date {
+  font-size: 0.8em;
+}
+
+.accordion-header__gpu-list {
+    display: flex;
+    /* flex-wrap: wrap; */
+    position: absolute;
+    left: 245px;
+}
+
+.accordion-body {
+  /* background: #292b2c; */
+}
+
+.previous-rig-builds {
+  max-height: 50vh;
+  margin-bottom: 200px;
+}
+
+/* main container for accordion */
+.previous-rig-builds-accordion {
+  width: 100vw;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.accordion-item {
+  width: 95vw;
+  margin: 0 auto;
+}
+
+.accordion-item:active {
+  background-color: white;
+}
+
+.previous-rig-builds__heading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -100px;
+  color: white;
+}
+
+.table-1 {
+  width: 36.6vw;
+  margin: 1em auto;
+}
+
+

@@ -128,13 +128,6 @@ export const Dashboard = () => {
     setProfit(profitArray)
   }
 
-  // const handleControlledInputChange = (e) => {
-  //   const newRigBuild = {...rigBuild}
-  //   newRigBuild[e.target.name] = e.target.value;
-  //   // update state
-  //   setRigBuild(newRigBuild)
-  // }
-
   const handleSaveEvent = () => {
     if (cost === 0 || hashrate === 0 || powerConsumption === 0) {
       window.alert('Please select a gpu before saving your rig build.')
@@ -161,7 +154,6 @@ export const Dashboard = () => {
         monthlyProfit: profit[2],
         yearlyProfit: profit[3]
       })
-      // .then(() => navigate("/"))
       .then(savedRigBuild => {
         console.log(savedRigBuild.id)
         const joinTableArray = gpuArray.map((gpu) => {
@@ -172,13 +164,7 @@ export const Dashboard = () => {
           console.log("JOIN TABLE OBJ ",joinTableObj);
           return joinTableObj;
         })
-        console.log("THIS IS JOIN TABLE ARRAY",joinTableArray)
-        // Todo: loop over gpuArray
-        // Todo: Inside the loop, construct join tables objects using the gpu's id and the id of the thing you just posted
-
-        // -- Stoo here and ask for help!! --//
-        // Todo: loop over join tables objects and construct array of fetch calls (try a .forEach)
-        // Todo: once you have an array of fetch calls, pass the array into a Promise.all()
+        
         Promise.all(joinTableArray.map(singleJoinObj => {
           fetch("http://localhost:8088/rigBuilds_graphicsCards", {
             method: "POST",
