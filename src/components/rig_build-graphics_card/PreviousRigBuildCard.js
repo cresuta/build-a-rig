@@ -3,34 +3,84 @@ import "./PreviousRigBuild.css";
 import Accordion from "react-bootstrap/Accordion";
 import { Col, Container, Row } from "react-bootstrap";
 import { Badge, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
   return (
     <>
-      <Accordion.Item eventKey="" className="accordion-item">
+      <Accordion.Item eventKey={rigBuild.id} className="accordion-item">
         <Accordion.Header className="accordion-header">
           <Col>{rigBuild.date}</Col>
           <Col className="accordion-header__gpu-list">
-            
-              {gpuArray.map((gpu) => {
-                console.log("SINGLE GPU - ", gpu);
-                return (
-                  <Button variant="dark" className="card-btn__previous">
-                    {gpu.name}
-                    <Badge
-                      className="card-brand__previous"
-                      bg={gpu.brand === "Nvidia" ? "success" : "danger"}
-                    >
-                      {gpu.brand}
-                    </Badge>
-                  </Button>
-                );
-              })}
-            
+            {gpuArray.map((gpu) => {
+              return (
+                <Button variant="dark" className="card-btn__previous">
+                  {gpu.name}
+                  <Badge
+                    className="card-brand__previous"
+                    bg={gpu.brand === "Nvidia" ? "success" : "danger"}
+                  >
+                    {gpu.brand}
+                  </Badge>
+                </Button>
+              );
+            })}
           </Col>
         </Accordion.Header>
         <Accordion.Body>
-          <Container className="accordion-container">
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Hardware Cost</th>
+                <th>Hashrate</th>
+                <th>Power Consumption</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ethereum</td>
+                <td>${rigBuild.hardwareCostTotal}</td>
+                <td>{rigBuild.hashrateTotal} MH/s</td>
+                <td>{rigBuild.hardwareCostTotal} Watts</td>
+              </tr>
+            </tbody>
+          </Table>
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Day</th>
+                <th>Week</th>
+                <th>Month</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Revenue</td>
+                <td>${rigBuild.dailyRevenue}</td>
+                <td>${rigBuild.weeklyRevenue}</td>
+                <td>${rigBuild.monthlyRevenue}</td>
+                <td>${rigBuild.yearlyRevenue}</td>
+              </tr>
+              <tr>
+                <td>Electricity</td>
+                <td>${rigBuild.dailyElectricity}</td>
+                <td>${rigBuild.weeklyElectricity}</td>
+                <td>${rigBuild.monthlyElectricity}</td>
+                <td>${rigBuild.yearlyElectricity}</td>
+              </tr>
+              <tr>
+                <td>Profit</td>
+                <td>${rigBuild.dailyProfit}</td>
+                <td>${rigBuild.weeklyProfit}</td>
+                <td>${rigBuild.monthlyProfit}</td>
+                <td>${rigBuild.yearlyProfit}</td>
+              </tr>
+            </tbody>
+          </Table>
+          {/* <Container className="accordion-container">
             <Col className="totals-container">
               <Row className="build-area-row">
                 <h4>Hardware Cost</h4>
@@ -48,7 +98,7 @@ export const PreviousRigBuildCard = ({ rigBuild, gpuArray }) => {
                 <h4>Revenue</h4>
               </Row>
             </Col>
-          </Container>
+          </Container> */}
         </Accordion.Body>
       </Accordion.Item>
     </>

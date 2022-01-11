@@ -25,7 +25,6 @@ export const PreviousRigBuildsList = () => {
     getRigBuildsGraphicsCards();
   }, []);
 
-  // Display these previous rig builds in a React Bootstrap accordion, which will be built in PreviousRigBuildCard
   // Sort each previous rig build by date
 
   return (

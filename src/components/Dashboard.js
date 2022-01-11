@@ -128,13 +128,6 @@ export const Dashboard = () => {
     setProfit(profitArray)
   }
 
-  // const handleControlledInputChange = (e) => {
-  //   const newRigBuild = {...rigBuild}
-  //   newRigBuild[e.target.name] = e.target.value;
-  //   // update state
-  //   setRigBuild(newRigBuild)
-  // }
-
   const handleSaveEvent = () => {
     if (cost === 0 || hashrate === 0 || powerConsumption === 0) {
       window.alert('Please select a gpu before saving your rig build.')
