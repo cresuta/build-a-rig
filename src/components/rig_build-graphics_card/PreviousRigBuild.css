@@ -27,9 +27,9 @@
 
 .accordion-header__gpu-list {
     display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    right: 550px;
+    /* flex-wrap: wrap; */
+    position: absolute;
+    left: 270px;
 }
 
 
@@ -45,8 +45,14 @@
 }
 
 .previous-rig-builds__heading {
-  position: absolute;
+  /* position: absolute;
   top: 200px;
   right: 720px;
+  color: white; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -100px;
   color: white;
 }
